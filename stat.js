@@ -313,6 +313,7 @@ function stats(){
   }else{
     get("autoupg6bought").hide();
   }
+  get("dmstat").hide() //test
   get("totaldm").html(decimal(game.totaldm));
   get("maxdm").html(decimal(game.maxdm));
   if(game.totaldm<0){
@@ -460,4 +461,5 @@ function stats(){
   }else{
     get("chal7stat").hide();
   }
+  
 }
