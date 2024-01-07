@@ -1,0 +1,702 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link type="text/css" rel="stylesheet" href="style.css" />
+  <link type="text/css" rel="stylesheet" href="dark.css" id="theme" />
+  <link rel="icon" href="favicon.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title id="title">Incremental Universe Growth</title>
+</head>
+
+<body>
+  <script src="saveload.js" defer></script>
+  <script src="notify.js" defer></script>
+  <script src="function.js" defer></script>
+  <script src="subj.js" defer></script>
+  <script src="chal.js" defer></script>
+  <script src="achieve.js" defer></script>
+  <script src="stat.js" defer></script>
+  <script src="main.js" defer></script>
+  Your universe is <b><span style="font-size: 25px; line-height: 0;"><span id="clicks">0</span></span></b> m<sup
+    id="dims" style="display: none;">1</sup> big.
+  <p><i>Growing <span id="csab">1</span> per second</i></p>
+  <hr/>
+  <div style="margin-bottom: -25px; text-align: center;">
+    <div class="button" onclick="switchpage('main')" tabindex="0">&nbsp;Main&nbsp;</div> &nbsp;
+    <div class="button" onclick="switchpage('options')" tabindex="0">&nbsp;Options&nbsp;</div>
+    &nbsp;
+    <div class="button" onclick="switchpage('stats')" tabindex="0">&nbsp;Statistics&nbsp;</div>
+    &nbsp;
+    <div class="button" onclick="switchpage('achieve')" tabindex="0">&nbsp;Achievements&nbsp;</div>
+    <span id="upg">&nbsp;
+      <div class="button" onclick="switchpage('automation')" tabindex="0">&nbsp;Automation&nbsp;</div>
+    </span><span id="dmupg"> &nbsp;
+      <div class="dmbutton" onclick="switchpage('darkmatter')" tabindex="0">&nbsp;Dark Matter&nbsp;</div>
+    </span><span id="objupg">&nbsp;
+      <div class="objbutton" onclick="switchpage('objects')" tabindex="0">&nbsp;Objects&nbsp;</div>
+    </span>
+  </div>
+  <hr style="border: 1px solid rgba(0, 0, 0, 0.15);" />
+  <br />
+  <section id="main" class="page" style="line-height: 0">
+    <div style="text-align: center;">
+      <div class="button" onclick="buymainupg1()" id="upg1" tabindex="0">Growth +<span id="mult">1</span><br />&nbsp;Cost: <span
+          id="upg1cost">10</span> m&nbsp;</div>
+      <br />
+      <div class="button" onclick="buymainupg2()" id="upg2" tabindex="0">Growth ×<span id="upg2base">1.5</span><br />&nbsp;Cost:
+        <span id="upg2cost">100</span> m&nbsp;
+      </div>
+      &nbsp;&nbsp;
+      <div class="button" onclick="buymainupg3()" id="upg3" tabindex="0">Cost ⅕<br />&nbsp;Cost: <span id="upg3cost">100</span> m
+      </div>
+      <br />
+      <div class="button" onclick="buymainupg4()" id="upg4" tabindex="0">Increase upgrade 2's base by 0.5<br />&nbsp;Cost: <span
+          id="upg4cost">10,000</span> m&nbsp;</div>
+      <br />
+      <div class="button" onclick="buymainupg5()" id="upg5" tabindex="0">Upgrade 2's scaling starts <span id="upg5base">2</span>
+        purchases later<br />&nbsp;Cost: <span id="upg5cost">1e50</span> m&nbsp;</div>
+      <br />
+      <div class="dimbutton" onclick="buydim()" id="dim" tabindex="0">Reset all progress, but gain a dimension<br /> Req: <span
+          id="dimcost">1e12</span> m&nbsp;</div><br />
+      <p style="color: #F00; text-shadow: 0 0 5px #F00; line-height: 20px" id="antitext">Antimatter is rooting your
+        universe gain by <span id="anti">1</span>!</p>
+      <div class="antibutton" onclick="buyantiupg1()" id="antiupg1" tabindex="0">Divide base antimatter effect by
+        1.44<br />&nbsp;Cost: <span id="antiupg1cost">1e27</span> m&nbsp;</div>
+      <br />
+      <div class="antibutton" onclick="buyantiupg2()" id="antiupg2" tabindex="0">Divide antimatter boost effect by
+        1.25<br />&nbsp;Cost: <span id="antiupg2cost">1e76</span> m&nbsp;</div><br />
+      <div class="dmbutton" onclick="completechal(0)" style="font-size: 30px; line-height: normal;" id="chalcomplete" tabindex="0">
+        Complete the challenge!<br /><span id="chalreq">1e60</span> m</div>
+    </div>
+  </section>
+  <section id="options" class="page">
+    <center>
+      <div class="button" onclick="subpage('opt', 'settings')" tabindex="0">&nbsp;Settings&nbsp;</div>&nbsp;&nbsp;
+      <div class="button" onclick="subpage('opt', 'musicpage')" tabindex="0">&nbsp;Music&nbsp;</div>&nbsp;&nbsp;
+      <div class="button" onclick="subpage('opt', 'info')" tabindex="0">&nbsp;Info&nbsp;</div><br />
+    </center>
+    <section style="line-height: 0;" id="settings" class="optsubpage subpage">
+      <h2>Save Data</h2><br />
+      <div class="button" onclick="save()" tabindex="0">&nbsp;Export via text&nbsp;</div>&nbsp;&nbsp;
+      <div class="button" onclick="load()" tabindex="0">&nbsp;Import via text&nbsp;</div><br />
+      <div class="button" onclick="save(true)" tabindex="0">&nbsp;Export via file&nbsp;</div>&nbsp;&nbsp;
+      <input type="file" id="file" class="buttonnocenter" oninput="load(true)">&nbsp;Import via file&nbsp;</input><br />
+      <div class="antibutton" onclick="manualreset()" tabindex="0">&nbsp;HARD RESET&nbsp;</div><br />
+      <h2>Look & Sound</h2><br />
+      <div class="button" onclick="changemode()" tabindex="0">&nbsp;Switch modes&nbsp;</div><br />
+      <input type="range" id="sfxslider">&nbsp;&nbsp;SFX Volume: <span id="sfxvolume">50</span>%</input><br />
+      <h2>Numbers</h2>
+      <br />Places: <input type="number" value="3" style="width: 3em;" id="pl" min="0" max="12" step="1"></input>
+      <br />One E: 10^<input type="number" value="9" style="width: 3em;" id="abbrbefore" min="3" max="15"
+        step="1"></input>
+      <br />Two Es: 1e10^<input type="number" value="6" style="width: 3em;" id="abbrafter" min="3" max="15"
+        step="1"></input>
+      <br />Display 1e10 instead of e10:
+      <label class="switch">
+        <input type="checkbox" id="XeY" checked>
+        <span class="slider"></span>
+      </label>
+      <br />Display 1e1e10 instead of e1e10:
+      <label class="switch">
+        <input type="checkbox" id="XeYeZ" checked>
+        <span class="slider"></span>
+      </label>
+    </section>
+    <section id="musicpage" class="optsubpage subpage"><br />
+      <center>
+        <div id="song" style="font-size: 25px;"></div><br />
+        <img src="JToH.png" alt="JToH Song: " width="75px" id="jtoh">
+        <div id="jtohsong" style="font-size: 20px;"></div><br id="jtohbreak" />
+        <table style="width: 100%; font-size: 25px; margin-bottom: -10px;">
+          <tbody id="musictable">
+            <tr>
+              <th>Relaxing</th>
+              <th>Calm</th>
+              <th>Bouncy</th>
+              <th>Fast Paced</th>
+              <th>Intense</th>
+            </tr>
+            <tr>
+              <td onclick="changemusic(1, 0)">
+                <div class="button" style="font-size: 25px;" tabindex="0">1</div>
+              </td>
+              <td onclick="changemusic(2, 0)">
+                <div class="button" style="font-size: 25px;" tabindex="0">1</div>
+              </td>
+              <td onclick="changemusic(3, 0)">
+                <div class="button" style="font-size: 25px;" tabindex="0">1</div>
+              </td>
+              <td onclick="changemusic(4, 0)">
+                <div class="button" style="font-size: 25px;" tabindex="0">1</div>
+              </td>
+              <td onclick="changemusic(5, 0)">
+                <div class="button" style="font-size: 25px;" tabindex="0">1</div>
+              </td>
+            </tr>
+            <tr>
+              <td onclick="changemusic(1, 1)">
+                <div class="button" style="font-size: 25px;" tabindex="0">2</div>
+              </td>
+              <td onclick="changemusic(2, 1)">
+                <div class="button" style="font-size: 25px;" tabindex="0">2</div>
+              </td>
+              <td onclick="changemusic(3, 1)">
+                <div class="button" style="font-size: 25px;" tabindex="0">2</div>
+              </td>
+              <td onclick="changemusic(4, 1)">
+                <div class="button" style="font-size: 25px;" tabindex="0">2</div>
+              </td>
+              <td onclick="changemusic(5, 1)">
+                <div class="button" style="font-size: 25px;" tabindex="0">2</div>
+              </td>
+            </tr>
+            <tr>
+              <td onclick="changemusic(1, 2)"">
+                <div class="button" style="font-size: 25px;" tabindex="0">3</div>
+              </td>
+              <td onclick="changemusic(2, 2)">
+                <div class="button" style="font-size: 25px;" tabindex="0">3</div>
+              </td>
+              <td onclick="changemusic(3, 2)">
+                <div class="button" style="font-size: 25px;" tabindex="0">3</div>
+              </td>
+              <td onclick="changemusic(4, 2)">
+                <div class="button" style="font-size: 25px;" tabindex="0">3</div>
+              </td>
+              <td onclick="changemusic(5, 2)">
+                <div class="button" style="font-size: 25px;" tabindex="0">3</div>
+              </td>
+            </tr>
+            <tr>
+              <td onclick="changemusic(1, 3)">
+                <div class="button" style="font-size: 25px;">4</div>
+              </td>
+              <td onclick="changemusic(2, 3)">
+                <div class="button" style="font-size: 25px;">4</div>
+              </td>
+              <td onclick="changemusic(3, 3)">
+                <div class="button" style="font-size: 25px;">4</div>
+              </td>
+              <td onclick="changemusic(4, 3)">
+                <div class="button" style="font-size: 25px;">4</div>
+              </td>
+              <td onclick="changemusic(5, 3)">
+                <div class="button" style="font-size: 25px;">4</div>
+              </td>
+            </tr>
+            <tr>
+              <td onclick="changemusic(1, 4)">
+                <div class="button" style="font-size: 25px;" tabindex="0">5</div>
+              </td>
+              <td></td>
+              <td onclick="changemusic(3, 4)">
+                <div class="button" style="font-size: 25px;" tabindex="0">5</div>
+              </td>
+              <td onclick="changemusic(4, 4)">
+                <div class="button" style="font-size: 25px;" tabindex="0">5</div>
+              </td>
+              <td onclick="changemusic(5, 4)">
+                <div class="button" style="font-size: 25px;" tabindex="0">5</div>
+              </td>
+            </tr>
+            <tr>
+              <td onclick="changemusic(1, 5)">
+                <div class="button" style="font-size: 25px;" tabindex="0">6</div>
+              </td>
+              <td></td>
+              <td onclick="changemusic(3, 5)">
+                <div class="button" style="font-size: 25px;" tabindex="0">6</div>
+              </td>
+              <td onclick="changemusic(4, 5)">
+                <div class="button" style="font-size: 25px;" tabindex="0">6</div>
+              </td>
+              <td onclick="changemusic(5, 5)">
+                <div class="button" style="font-size: 25px;" tabindex="0">6</div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td onclick="changemusic(3, 6)">
+                <div class="button" style="font-size: 25px;" tabindex="0">7</div>
+              </td>
+              <td onclick="changemusic(4, 6)">
+                <div class="button" style="font-size: 25px;" tabindex="0">7</div>
+              </td>
+              <td onclick="changemusic(5, 6)">
+                <div class="button" style="font-size: 25px;" tabindex="0">7</div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td onclick="changemusic(3, 7)">
+                <div class="button" style="font-size: 25px;" tabindex="0">8</div>
+              </td>
+              <td onclick="changemusic(4, 7)">
+                <div class="button" style="font-size: 25px;" tabindex="0">8</div>
+              </td>
+              <td onclick="changemusic(5, 7)">
+                <div class="button" style="font-size: 25px;" tabindex="0">8</div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td onclick="changemusic(4, 8)">
+                <div class="button" style="font-size: 25px;" tabindex="0">9</div>
+              </td>
+              <td onclick="changemusic(5, 8)">
+                <div class="button" style="font-size: 25px;" tabindex="0">9</div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td onclick="changemusic(5, 9)">
+                <div class="button" style="font-size: 25px;" tabindex="0">10</div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td onclick="changemusic(5, 10)">
+                <div class="button" style="font-size: 25px;" tabindex="0">11</div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td onclick="changemusic(5, 11)">
+                <div class="button" style="font-size: 25px;" tabindex="0">12</div>
+              </td>
+            </tr>
+            <td colspan="5" onclick="changemusic(0, 0)">
+              <div class="button" style="font-size: 20px;" id="nomusic" tabindex="0">Disable Music</div>
+            </td>
+          </tbody>
+        </table>
+        <br />
+        <input type="range" id="musicslider">&nbsp;&nbsp;Music Volume: <span id="musicvolume">50</span>%</input>
+      </center>
+    </section>
+    <section id="info" class="optsubpage subpage">
+      <span style="line-height: 25px">Current Version: v0.2.4.11 </span><i><span style="font-size: 12px">[December 15, 2023,
+          5:48 PM EST]</span></i><br />
+      <ul>
+        <li>Fixed dumb antimatter stats bug</li>
+      </ul>
+      <p style="line-height: 25px">An HTML remake of two of my
+        <a style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
+          href="https://scratch.mit.edu/">Scratch</a> incremental games that were never finished.
+        <br /><em>(they were named Universe Expander before I realized it was
+          <a style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
+            href="https://jacorb90.me/UE-Rewritten/">taken</a>)</em><br />
+        <a style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
+          href="https://turbowarp.org/618723327/fullscreen?fps=60&hqpen">Universe Expander</a>
+        <a style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
+          href="https://turbowarp.org/700312602/fullscreen?fps=60&hqpen">Universe Expander Reloaded</a><br /><br />
+        Inspired by <a style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
+          href="https://patcailmemer.github.io/Ordinal-Markup/">Ordinal Markup</a> and <a
+          style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
+          href="https://mrredshark77.github.io/incremental-mass-rewritten/">Incremental Mass Rewritten</a>
+        <br /><br />
+        Coming in the next major update (v0.2.5):
+      <ul>
+        <li>More Subjective Milestones (likely Objective Challenges)</li>
+      </ul><br />
+      <div onclick="openwiki()" class="button" tabindex="0">&nbsp;IUG Wiki&nbsp;</div>&nbsp;&nbsp;
+      <div onclick="openserver()" class="button" tabindex="0">&nbsp;IUG: The Server&nbsp;</div>
+    </section>
+  </section>
+  <section id="automation" class="page">
+    <center>
+      <span style="line-height: 0">
+        <div class="button" onclick="buyupg1()" id="autoantiupg1" tabindex="0">&nbsp;Automate first antimatter
+          upgrade&nbsp;<br />Cost: 1e60 m</div><br />
+        <div class="button" onclick="buyupg2()" id="automainupg1-3" tabindex="0">&nbsp;Automate 1st and 3rd main
+          upgrades&nbsp;<br />Cost: 1e87 m</div><br />
+        <div class="button" onclick="buyupg3()" id="automain" tabindex="0">&nbsp;Automate the rest of the main
+          upgrades&nbsp;<br />Cost: 1e129 m</div><br />
+        <div class="button" onclick="buyupg4()" id="autouptodm" tabindex="0">&nbsp;Automate everything before dark
+          matter&nbsp;<br />Cost: 1e135 m</div><br />
+        <div class="button" onclick="buyupg5()" id="autodm" tabindex="0">&nbsp;Get dark matter gain every second&nbsp;<br />Cost:
+          1e145 m</div><br />
+        <div class="button" onclick="buyupg6()" id="dimresetless" tabindex="0">&nbsp;Getting a dimension doesn't
+          reset&nbsp;<br />Cost: 1e180 m</div><br />
+      </span>
+    </center>
+  </section>
+  <section id="darkmatter" class="page">
+    <div style="text-align: center;">
+      You have <span id="dm">0</span> dark matter.<br /><br />
+      <div class="dmbutton" onclick="buydm()" id="gaindm" tabindex="0">&nbsp;Reset all previous progress in exchange for dark
+        matter&nbsp;<br />
+        &nbsp;You will gain <span id="dmgain">0</span> dark matter on reset&nbsp;<br />
+        &nbsp;Next dark matter at <span id="nextdm">1e120</span> m&nbsp;</div><br />
+      <p>Your dark matter is raising your universe grow ^<span id="dmboost">1</span></p><br />
+      <div class="dmbutton" onclick="subpage('dm', 'darkmatterupg')" tabindex="0">&nbsp;Upgrades&nbsp;</div><span
+        id="chalpage">&nbsp;&nbsp;
+        <div class="dmbutton" onclick="subpage('dm', 'challenge')" tabindex="0">&nbsp;Challenges&nbsp;</div>
+      </span><br />
+      <section style="line-height: 0;" id="darkmatterupg" class="dmsubpage subpage">
+        <div class="dmbutton" onclick="buydmupg1()" id="dmupg1" tabindex="0">&nbsp;Universe gain is multiplied by dark matter
+          +2&nbsp;<br />Cost: 2 dark matter&nbsp;</div>
+        <span id="dmspace1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <div class="dmbutton" onclick="buydmbuy1()" id="dmbuy1" tabindex="0">&nbsp;Multiply dark matter gain by
+          2&nbsp;<br />&nbsp;Cost: <span id="dmbuy1cost">5</span> dark matter&nbsp;</div><br />
+        <div class="dmbutton" onclick="buydmupg2()" id="dmupg2" tabindex="0">&nbsp;Previous upgrade is squared<br />&nbsp;Cost: 25
+          dark matter</div>
+        <span id="dmspace2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <div class="dmbutton" onclick="buydmbuy2()" id="dmbuy2" tabindex="0">&nbsp;Antimatter effect starts <span
+            id="dm2mult">2.5</span>x later&nbsp;<br />&nbsp;Cost: <span id="dmbuy2cost">40</span> dark matter&nbsp;
+        </div><br />
+        <div class="dmbutton" onclick="unlockchal()" id="unlockchal" tabindex="0"><b>Unlock Challenges</b><br />Req: 8,000,000 dark
+          matter</div>
+        <span id="dmspace3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <div class="dmbutton" onclick="buydmbuy3()" id="dmbuy3" tabindex="0">&nbsp;Multiply dark matter boost by
+          1.05&nbsp;<br />&nbsp;Cost: <span id="dmbuy3cost">1,000,000</span> dark matter&nbsp;</div><br />
+        <div class="dmbutton" onclick="extendchal()" id="extendchal" tabindex="0"><b>Extend Challenges</b><br />Req: 4e10 dark matter
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="dmbutton" onclick="buyupg7()" id="autodmbuy" tabindex="0">&nbsp;Automate dark matter buyables 1 &
+          2&nbsp;<br />Cost: 3e96 dark matter</div>
+      </section>
+    </div>
+    <section style="line-height: 0;" id="challenge" class="dmsubpage subpage">
+      <div class="dmbutton" onclick="exitchal(0)" tabindex="0">&nbsp;Exit Challenge&nbsp;</div>
+      <span style="line-height: normal;">
+        <p>You are currently <span id="chal">not in any challenge</span>.</p>
+        Your <span id="chaltotal">0</span> total challenge completion(s) are multiplying your dark matter boost by ^<span
+          id="chalboost">1</span>.
+        <br /><br />
+        <center>
+          <div class="dmbutton chalbutton" onclick="enterchal(1)" tabindex="0">&nbsp;Challenge 1&nbsp;<br />&nbsp;Both antimatter
+            upgrades are useless&nbsp;<br />&nbsp;Goal: 2e100 m&nbsp;<br />&nbsp;Reward: Dark matter buyable 2 is
+            x100&nbsp;</div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="dmbutton chalbutton" onclick="enterchal(2)" tabindex="0">&nbsp;Challenge 2&nbsp;<br />&nbsp;Upgrade 2's cost
+            scaling is a lot worse, upgrade 5 is useless&nbsp;<br />&nbsp;Goal: 1e65 m&nbsp;<br />&nbsp;Reward: Upgrade
+            5's base is increased by 0.5&nbsp;</div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="dmbutton chalbutton" onclick="enterchal(3)" tabindex="0">&nbsp;Challenge 3&nbsp;<br />&nbsp;Dimensions are
+            useless&nbsp;<br />&nbsp;Goal: 3e50 m&nbsp;<br />&nbsp;Reward: Dimension scaling is weakened&nbsp;</div>
+          <br />
+          <span id="dmchal2" style="display: none;">
+            <div class="dmbutton chalbutton" onclick="enterchal(4)" tabindex="0">&nbsp;Challenge 4&nbsp;<br />&nbsp;Antimatter is
+              much stronger&nbsp;<br />&nbsp;Goal: 5.4e20 m&nbsp;<br />&nbsp;Reward: Divide second antimatter boost by
+              1.2&nbsp;</div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="dmbutton chalbutton" onclick="enterchal(5)" tabindex="0">&nbsp;Challenge 5&nbsp;<br />&nbsp;Only upgrades 1
+              and 3 exist&nbsp;<br />&nbsp;Goal: 9e25 m&nbsp;<br />&nbsp;Reward: None&nbsp;</div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="dmbutton chalbutton" onclick="enterchal(6)" tabindex="0">&nbsp;Challenge 6&nbsp;<br />&nbsp;Dark matter boost
+              is divided by 10&nbsp;<br />&nbsp;Goal: 4.5e100 m&nbsp;<br />&nbsp;Reward: None&nbsp;</div>
+          </span><br />
+          <div id="chal7" class="dmbutton chalbutton" style="display: none; width: 690px;" onclick="enterchal(7)" tabindex="0">
+            &nbsp;Challenge 7&nbsp;<br />
+            &nbsp;<b>EVERY PREVIOUS CHALLENGE AT ONCE</b> and challenge completions boost universe size gain&nbsp;<br />
+            &nbsp;Goal: 7.5e180 m&nbsp;<br />
+            &nbsp;Reward: Your dark matter gain is multiplied by objects + challenge completions&nbsp;
+          </div>
+        </center>
+      </span>
+    </section>
+  </section>
+  <section id="objects" class="page">
+    <div style="text-align: center;">
+      <div style="line-height: 24px">You have <span id="objs">0</span> objects.<br /><br />
+        <div class="objbutton" id="gainobjs" onclick="getobjs()" tabindex="0">&nbsp;Reset all previous progress, but gain
+          objects&nbsp;<br />
+          &nbsp;You will gain <span id="objgain">0</span> objects on reset&nbsp;<br />
+          &nbsp;Next object at <span id="nextobj">1e225</span> dark matter&nbsp;</div><br />
+        Your objects is multiplying your dark matter boost ×<span id="objboost">1</span><br /><br />
+        <div class="objbutton" onclick="subpage('obj', 'objectupgs')" tabindex="0">Upgrades</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="objbutton" onclick="subpage('obj', 'subjmiles')" tabindex="0">Subjective Milestones
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="objbutton" onclick="subpage('obj', 'antiremovetool')"
+          id="antiremoval" tabindex="0">Antimatter Removal Tool</div>
+        <br />
+        <section class="objsubpage subpage" id="objectupgs">
+          <div class="objbutton" id="objbuy1" onclick="buyobjbuy1()" tabindex="0">Upgrade 4's cost scaling is weakend<br />Cost:
+            <span id="objbuy1cost">2</span> objects
+          </div>
+        </section>
+        <section class="objsubpage subpage" id="antiremovetool">
+          You have <span id="amrp">1</span> AMRP.<br /><br />
+          <div class="objbutton" onclick="gainamrp()" tabindex="0">Convert <span id="antiremovalobjtotal">3</span> objects into <span
+              id="amrpgain">1</span> Antimatter Removal Points<br />Next AMRP at <span id="nextamrp">8</span> objects
+          </div><br />
+          Your AMRP is rooting your antimatter effect ^<span id="amrpboost">1</span>
+        </section>
+        <section class="objsubpage subpage" id="subjmiles">
+          <p>Welcome to the Subjective Milestones! If you get an object with at least a certain size, you will get QoL
+            features! The use of the first DM buyable, or lack of it, is key!</p>
+          <p>Your current max meters per object: <span id="maxobjm"></span></p>
+          <center>
+            <table>
+              <tr>
+                <td class="milestone" id="milestone1">
+                  <span id="sme1e6">1e1e6</span> meters<br />
+                  <br />
+                  You constantly gain 10 dark matter per second
+                </td>
+                <td class="milestone" id="milestone2">
+                  <span id="sme1.2e6">1e1.2e6</span> meters<br /> meters<br />
+                  <br />
+                  The dark matter cap comes 100x later, but only if you haven't beaten Challenge 6.
+                </td>
+                <td class="milestone" id="milestone3">
+                  <span id="sme1.5e6">1e1.5e6</span> meters<br /> meters<br />
+                  <br />
+                  Raise the challenge 6 completions required to disable SM1e1.2e6's reward to 3.
+                </td>
+                <td class="milestone" id="milestone4">
+                  <span id="sme1.8e6">1e1.8e6</span> meters<br /> meters<br />
+                  <br />
+                  Unlock Challenge 7 and raise antimatter upgrade 1's divider to 1.8
+                </td>
+                <td class="milestone" id="milestone5">
+                  1e2e6 meters<br />
+                  <br />
+                  Unlock the Antimatter Removal Tool
+                </td>
+              </tr>
+              <tr>
+                <td class="milestone" id="milestone6">
+                  1e2.5e6 meters<br />
+                  <br />
+                  All challenge mults are x1.25
+                </td>
+                <td class="milestone" id="milestone7">
+                  1e3e6 meters<br />
+                  <br />
+                  Increase the meter cap to 1e1e200
+                </td>
+                <td class="milestone" id="milestone8">
+                  1e3.6e6 meters<br />
+                  <br />
+                  Unlock Objective Challenges
+                </td>
+                <td class="milestone" colspan="2" id="milestone9">
+                  1e4e6 meters<br />
+                  <br />
+                  Dimensions save upon resets up to Objects, you gain 1 Dimension every second, improve the Antimatter
+                  Removal Tool, and unlock 1 new upgrade
+                </td>
+              </tr>
+              <td class="milestone" colspan="6" id="milestone10">
+                1e5e6 meters<br />
+                <br />
+                You keep your autobuy dark matter buyable autobuyer upon reseting for objects, and unlock ???
+              </td>
+            </table>
+          </center>
+        </section>
+      </div>
+    </div>
+  </section>
+  <section id="achieve" class="page">
+    <center>
+      <h2><span id="totalach">0</span>/62 Achievements</h2>
+      Progress in the game to earn achievements! They don't give any boost and are purely for bragging. <small><i>shut
+          up that line isn't stolen from ordinal markup</i></small>
+      <br /><br />
+      <table>
+        <tbody id="achievetable">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><i><span id="achieverownext"></span> to unlock the next row of achievements!</i></p>
+    </center>
+  </section>
+  <section id="stats" class="page">
+    <div style="text-align: center;">
+      <p>Your universe has reached a total size of <span id="totalclicks">0</span> m.</p>
+      <p>Your max universe size is <span id="maxclicks">0</span> m</p>
+      <p>You started playing on <span id="startplaying">Sun, May 15, 2022 9:30 AM</span></p>
+      <p>You have played the game for <span id="timeplaying">1 year, 5 months, 3 days</span></p>
+      <p>You started playing on version <span id="versionstarted">v0.2.4.3</span> <i>(Internal version number <span id="internalversion">18</span>)</i></p>
+      <br/>
+      <div class="button" onclick="subpage('stat','mainstat')">Main</div>
+      <span id="autostatbutton">
+        &nbsp;
+        <div class="button" onclick="subpage('stat','autostat')">Automation</div>
+      </span>
+      <span id="dmstatbutton">
+        &nbsp;
+        <div class="dmbutton" onclick="subpage('stat','dmstat')">Dark Matter</div>
+      </span>
+      <section class="statsubpage subpage" id="mainstat">
+        <p>You have <span id="hasupg1bought" style="display: none">never</span> bought upgrade 1<span id="upg1stats"> a total of <span id="totalupg1bought">1</span> time(s), and last bought it <span id="lastupg1bought">1 year, 5 months, 3 days ago</span></span></p>
+        <p id="upg2bought">You have <span id="hasupg2bought" style="display: none">never</span> bought upgrade 2<span id="upg2stats"> a total of <span id="totalupg2bought">1</span> time(s), and last bought it <span id="lastupg2bought">1 year, 5 months, 3 days ago</span></span></p>
+        <p id="upg3bought">You have <span id="hasupg3bought" style="display: none">never</span> bought upgrade 3<span id="upg3stats"> a total of <span id="totalupg3bought">1</span> time(s), and last bought it <span id="lastupg3bought">1 year, 5 months, 3 days ago</span></span></p>
+        <p id="upg4bought">You have <span id="hasupg4bought" style="display: none">never</span> bought upgrade 4<span id="upg4stats"> a total of <span id="totalupg4bought">1</span> time(s), and last bought it <span id="lastupg4bought">1 year, 5 months, 3 days ago</span></span></p>
+        <p id="upg5bought">You have <span id="hasupg5bought" style="display: none">never</span> bought upgrade 5<span id="upg5stats"> a total of <span id="totalupg5bought">1</span> time(s), and last bought it <span id="lastupg5bought">1 year, 5 months, 3 days ago</span></span></p>
+        <br/>
+        <p>You have had a total of <span id="totaldim">1</span> dimension(s), and <span id="hasdimbought">last</span> bought one<span id="lastdimbought"> 1 year, 5 months, 3 days ago</span></p>
+        <p>You have had a maximum of <span id="maxdim">1</span> dimension(s)</p>
+        <p id="passivedim">You have passively gained <span id="passivedimgain">0</span> dimension(s)</p>
+        <br/>
+        <p id="antiupg1bought">You have <span id="hasantiupg1bought" style="display: none">never</span> bought antimatter upgrade 1<span id="antiupg1stats"> a total of <span id="totalantiupg1bought">1</span> time(s), and last bought it <span id="lastantiupg1bought">1 year, 5 months, 3 days ago</span></span></p>
+        <p id="antiupg2bought">You have <span id="hasantiupg2bought" style="display: none">never</span> bought antimatter upgrade 2<span id="antiupg2stats"> a total of <span id="totalantiupg2bought">1</span> time(s), and last bought it <span id="lastantiupg2bought">1 year, 5 months, 3 days ago</span></span></p>
+      </section>
+      <section id="autostat" class="statsubpage subpage">
+        <p id="autoupg1bought">You <span id="hasautoupg1bought" style="display: none">haven't</span> bought automation upgrade 1 <span id="whenautoupg1bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg2bought">You <span id="hasautoupg2bought" style="display: none">haven't</span> bought automation upgrade 2 <span id="whenautoupg2bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg3bought">You <span id="hasautoupg3bought" style="display: none">haven't</span> bought automation upgrade 3 <span id="whenautoupg3bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg4bought">You <span id="hasautoupg4bought" style="display: none">haven't</span> bought automation upgrade 4 <span id="whenautoupg4bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg5bought">You <span id="hasautoupg5bought" style="display: none">haven't</span> bought automation upgrade 5 <span id="whenautoupg5bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg6bought">You <span id="hasautoupg6bought" style="display: none">haven't</span> bought automation upgrade 6 <span id="whenautoupg6bought">1 year, 5 months, 3 days ago</span></p>
+      </section>
+      <section id="dmstat" class="statsubpage subpage">
+        <p>You have had a total of <span id="totaldm">1</span> dark matter, and <span id="hasdmbought">last</span> reset for it<span id="lastdm"> 1 year, 5 months, 3 days ago</span></p>
+        <p id="passivedm">You have passively gained <span id="passivedm">0</span> dark matter</p>
+        <p>You have had a maximum of <span id="maxdm">1</span> dark matter</p>
+        <hr>
+        <p id="dmupg1bought">You <span id="hasdmupg1bought">last</span> bought dark matter upgrade 1<span id="lastdmupg1bought"> 1 year, 5 months, 3 days ago</span></p>
+        <p id="dmbuy1bought">You have <span id="hasdmbuy1bought" style="display: none">never</span> bought dark matter buyable 1<span id="dmbuy1stats"> a total of <span id="totaldmbuy1bought">1</span> time(s), and last bought it <span id="lastdmbuy1bought">1 year, 5 months, 3 days ago</span></span></p>
+        <p id="dmupg2bought">You <span id="hasdmupg2bought">last</span> bought dark matter upgrade 2<span id="lastdmupg2bought"> 1 year, 5 months, 3 days ago</span></p>
+        <p id="dmbuy2bought">You have <span id="hasdmbuy2bought" style="display: none">never</span> bought dark matter buyable 2<span id="dmbuy2stats"> a total of <span id="totaldmbuy2bought">1</span> time(s), and last bought it <span id="lastdmbuy2bought">1 year, 5 months, 3 days ago</span></span></p>
+        <p id="dmupg3bought">You <span id="hasdmupg3bought">last</span> bought dark matter upgrade 3<span id="lastdmupg3bought"> 1 year, 5 months, 3 days ago</span></p>
+        <p id="dmbuy3bought">You have <span id="hasdmbuy3bought" style="display: none">never</span> bought dark matter buyable 3<span id="dmbuy3stats"> a total of <span id="totaldmbuy3bought">1</span> time(s), and last bought it <span id="lastdmbuy3bought">1 year, 5 months, 3 days ago</span></span></p>
+        <div id="chalstats">
+          <hr>
+          <p>You <span id="haschalbought">haven't</span> bought challenges <span id="whenchalbought">1 year, 5 months, 3 days ago</span></p>
+          <p id="chalextend">You <span id="haschalextend">haven't</span> extended challenges <span id="whenchalextend">1 year, 5 months, 3 days ago</span></p>
+          <div id="chalcomp">
+            <p>You have completed a total of <span id="grandchal">1</span> challenge(s)<span id="totalchalbeat">, and last completed one <span id="lastchal">1 year, 5 months, 3 days ago</span></span></p>
+            <p>Out of those, you have had:</p>
+            <ul style="line-height: 180%">
+              <li><span id="chal1total">0</span> challenge 1 completion(s)<span id="chal1beat">, and last beat it <span id="lastchal1beat">1 year, 5 months, 3 days ago</span></span></li>
+              <li><span id="chal2total">0</span> challenge 2 completion(s)<span id="chal2beat">, and last beat it <span id="lastchal2beat">1 year, 5 months, 3 days ago</span></span></li>
+              <li><span id="chal3total">0</span> challenge 3 completion(s)<span id="chal3beat">, and last beat it <span id="lastchal3beat">1 year, 5 months, 3 days ago</span></span></li>
+              <div id="extendchalcomp">
+                <li><span id="chal4total">0</span> challenge 4 completion(s)<span id="chal4beat">, and last beat it <span id="lastchal4beat">1 year, 5 months, 3 days ago</span></span></li>
+                <li><span id="chal5total">0</span> challenge 5 completion(s)<span id="chal5beat">, and last beat it <span id="lastchal5beat">1 year, 5 months, 3 days ago</span></span></li>
+                <li><span id="chal6total">0</span> challenge 6 completion(s)<span id="chal6beat">, and last beat it <span id="lastchal6beat">1 year, 5 months, 3 days ago</span></span></li>
+              </div>
+              <li id="chal7stat"><span id="chal7total">0</span> challenge 7 completion(s)<span id="chal7beat">, and last beat it <span id="lastchal7beat">1 year, 5 months, 3 days ago</span></span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="obj">
+        <p>You have had a total of <span id="totalobj">1</span> dark matter, and <span id="hasobjbought">last</span> reset for it<span id="lastobj"> 1 year, 5 months, 3 days ago</span></p>
+        <p>You have had a maximum of <span id="maxobj"></span></p>
+      </section>
+    </div>
+  </section>
+  <footer>
+    <br /><br />
+    <center>
+      <label>Completed:</label>
+      <progress id="progress" class="progress-bar" value="0">0%</progress>
+      <label>[Endgame: <span id="endgame">1e1e8</span> m]</label>
+    </center>
+  </footer>
+</body>
+
+</html>

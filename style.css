@@ -1,0 +1,209 @@
+[tooltip] {
+	position: relative;
+	z-index: 2;
+}
+[tooltip]:before,
+[tooltip]:after {
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+[tooltip]:before {
+	font-size: 8px;
+	position: absolute;
+	top: -10px;
+	margin-bottom: -20px;
+	padding: 4px;
+	border-radius: 6px;
+  width: 75px;
+	background-color: #000;
+	color: #fff;
+	content: attr(tooltip);
+	transition-duration: 0.2s;
+	z-index: 4;
+  text-align: center;
+  left: calc(50%);
+  -ms-transform: translate(-50%);
+  transform: translate(-50%);
+}
+[tooltip]:hover:before {
+	visibility: visible;
+	opacity: 1;
+  z-index: 5;
+}
+#achievetable, .milestone {
+	font-size: 12px;
+  background-color: rgba(0,0,0,0);
+  color: white;
+	text-shadow: 0 0 10px black;
+}
+.milestone {
+  width: 150px;
+	height: 150px;
+  font-size: 15px;
+  background-color: #555;
+  line-height: normal;
+  padding: 15px;
+}
+td {
+  border-radius: 6px;
+  text-align: center;
+  width: 80px;
+	height: 80px;
+}
+body, input[type="range"] {
+  font-family: "Noto Sans", "IBM Plex Sans", "DIN Alternate", "Lucida Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+  text-shadow: 0 0 10px black;
+  font-size: 15px;
+  padding: 15px;
+}
+.progress-bar {
+  height: 0.75rem;
+  width: 300px;
+  background-color: #555;
+	border-radius: 15px;
+  justify-content: center;
+	text-align: center;
+  color: #0A4;
+	padding: 3px;
+	box-shadow: 0 0 10px #0008;
+	/* make this work for browsers other than "standard" (as listed below) */
+}
+.dimbutton {
+text-align: center; background: #550; color: #AA0; padding: 10px; line-height: 25px; border-radius: 5px; box-shadow: #550 0 0 10px; display: inline-block; margin-bottom: 25px; cursor: pointer;
+}
+.dimbutton:hover {
+background: #660; }
+.dimbutton:active {
+background: #4a4a00; }
+.antibutton {
+text-align: center; background: #800; color: #F00; padding: 10px; line-height: 25px; border-radius: 5px; box-shadow: #800 0 0 10px; display: inline-block; margin-bottom: 25px; cursor: pointer; }
+.antibutton:hover {
+background: #700; }
+.antibutton:active {
+background: #900; }
+.dmbutton {
+text-align: center; background: black; padding: 10px; line-height: 25px; border-radius: 5px; box-shadow: black 0 0 15px; display: inline-block; margin-bottom: 25px; cursor: pointer; }
+.dmbutton:hover {
+color: #ccc; }
+.dmbutton:active {
+color: white;
+background: #111; }
+.objbutton {
+text-align: center; background: #bf5200; color: black; padding: 10px; line-height: 25px; border-radius: 5px; box-shadow: #bf5200 0 0 10px; display: inline-block; margin-bottom: 25px; cursor: pointer; }
+.objbutton:hover {
+background: #a54700; }
+.objbutton:active {
+background: #d85d00; }
+.chaosbutton {
+text-align: center; background: yellow; color: black; padding: 10px; line-height: 25px; border-radius: 5px; box-shadow: yellow 0 0 10px; display: inline-block; margin-bottom: 25px; cursor: pointer; }
+.chaosbutton:hover {
+background: #bb0; }
+.chaosbutton:active {
+background: #880; }
+.lifebutton {
+text-align: center; background: #2d5; color: white; padding: 10px; line-height: 25px; border-radius: 5px; box-shadow: #2d5 0 0 10px; display: inline-block; margin-bottom: 25px; cursor: pointer; }
+.lifebutton:hover {
+background: #1a2; }
+.lifebutton:active {
+background: #039407; }
+.button {
+	text-align: center;
+}
+.button, .dimbutton, .dmbutton, .antibutton, .objbutton, .chaosbutton, .lifebutton {
+  -webkit-user-select: none; /* Safari */ -moz-user-select: none; /* Firefox */ -ms-user-select: none; /* IE10+/Edge */ user-select: none; /* Standard */
+}
+.chalbutton {
+	width: 200px;
+	height: 150px;
+	font-size: 13px;
+	vertical-align: middle;
+}
+.page {
+    -o-animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.5s ease forwards;
+}
+.subpage {
+    -o-animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.5s ease forwards;
+}
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+ from { opacity: 0; }
+ to   { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+input[type="range"] {
+  padding: 0;
+  width: 150px;
+}
+input[type="number"] {
+  padding: 5px;
+  width: 150px;
+  border-radius: 4px;
+  font-family: "Nova Mono", "IBM Plex Sans", "DIN Alternate", "Lucida Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 45px;
+  height: 25px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 2.5px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #00d853;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #00d853;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(19px);
+  -ms-transform: translateX(19px);
+  transform: translateX(19px);
+}
+.slider {
+  border-radius: 34px;
+}
+.slider:before {
+  border-radius: 50%;
+}
+hr {
+   border: 1px solid rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,22 @@
+body, input, .bypass-colors {
+  background-color: #333;
+  color: white;
+	text-shadow: 0 0 10px black;
+}
+.button, .buttonnocenter {
+padding: 10px; line-height: 25px; border-radius: 5px; box-shadow: #0008 0 0 10px; display: inline-block; margin-bottom: 25px; cursor: pointer; }
+.button:hover, .buttonnocenter:hover {
+background: #383838; }
+.button:active, .buttonnocenter:active {
+background: #2a2a2a;  }
+details > summary {
+  background-color: #333;
+  box-shadow: 3px 3px 4px #0008;
+}
+details > p {
+  background-color: #333;
+  box-shadow: 3px 3px 4px #0008;
+}
+details[open] > summary {
+  background-color: #0008;
+}
