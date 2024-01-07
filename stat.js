@@ -178,7 +178,8 @@ let versions = [
   "v0.2.4.11 test build 1",
   "v0.2.4.11 test build 2",
   "v0.2.4.11 test build 3",
-  "v0.2.4.11 or later"
+  "v0.2.4.11",
+  "v0.2.5"
 ]
 function stats(){
   get("totalclicks").html(decimal(game.totalclicks));
