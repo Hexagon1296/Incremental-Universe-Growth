@@ -111,7 +111,7 @@ function reset() {
       4: 1652572800000,
       5: 1652572800000
     },
-    totaldim: 0,
+    totaldim: 1,
     passivedim: 0,
     maxdim: 0,
     lastdim: 1652572800000, // May 15 2022
