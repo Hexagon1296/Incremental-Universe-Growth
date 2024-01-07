@@ -811,6 +811,7 @@ function loadgame(gamedata) {
   subpage('dm', 'darkmatterupg');
   subpage('obj', 'objectupgs');
   subpage('opt', 'settings');
+  subpage('stat', 'mainstat');
 }
 function load(file = false) {
   if (file) {
