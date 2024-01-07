@@ -313,7 +313,7 @@ function stats(){
   }else{
     get("autoupg6bought").hide();
   }
-  get("totaldm").html(decimal(game.totaldm));
+  get("totaldm").html(game.totaldm);
   get("maxdm").html(decimal(game.maxdm));
   if(game.totaldm<0){
     get("hasdmbought").html("have never")
@@ -356,7 +356,6 @@ function stats(){
   }
   if(game.isdmunlocked){
     get("dmstatbutton").show();
-
   }else{
     get("dmstatbutton").hide();
   }
