@@ -223,7 +223,7 @@ function stats(){
   }
   get("totaldim").html(game.totaldim);
   get("maxdim").html(game.maxdim);
-  if(game.totaldim<2){
+  if(game.totaldim==1){
     get("hasdimbought").html("have never")
     get("lastdimbought").hide();
   }else{
