@@ -507,6 +507,8 @@ function getobjs() {
     rebirth.currentTime = 0;
     rebirth.play();
     game.objs = add(game.objs, objgain);
+    game.totalobjs = add(game.totalobjs,objgain);
+    game.lastobj = Date.now();
     if (objgain == Infinity || isNaN(objgain)) game.objs = Infinity;
     game.objboost = game.objs / 10 + 1.01;
     game.clicks = -Infinity
@@ -567,6 +569,8 @@ function buyobjbuy1() {
     buy.currentTime = 0;
     buy.play();
     game.objbuy1cost += log(5);
+    game.totalobjbuybought[1]++;
+    game.lastobjbuybought[1] = Date.now();
     get("objbuy1cost").html(decimal(game.objbuy1cost));
   } else {
     reject.currentTime = 0;
@@ -805,6 +809,9 @@ function gameloop(diff) {
   }
   if(game.dm>game.maxdm){
     game.maxdm = game.dm;
+  }
+  if(game.objs>game.maxobjs){
+    game.maxobjs = game.objs;
   }
 }
 function manualreset() {
