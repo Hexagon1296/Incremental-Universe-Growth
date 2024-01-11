@@ -194,6 +194,7 @@ function stats(){
       get("upg"+i+"stats").hide();
     }else{
       get("upg"+i+"stats").show();
+      get("hasupg"+i+"bought").hide();
       get("totalupg"+i+"bought").html(game.totalbought[i]-(i==1));
       if(game.lastbought[i]==1652572800000){
         get("lastupg"+i+"bought").html("sometime");
@@ -242,6 +243,7 @@ function stats(){
       get("antiupg"+i+"stats").hide();
     }else{
       get("antiupg"+i+"stats").show();
+      get("hasantiupg"+i+"bought").hide();
       get("totalantiupg"+i+"bought").html(game.totalantibought[i]);
       if(game.lastantibought[i]==1652572800000){
         get("lastantiupg"+i+"bought").html("sometime");
@@ -333,6 +335,7 @@ function stats(){
       get("dmbuy"+i+"stats").hide();
     }else{
       get("dmbuy"+i+"stats").show();
+      get("hasdmbuy"+i+"bought").hide();
       get("totaldmbuy"+i+"bought").html(game.totaldmbuybought[i]);
       if(game.lastdmbuybought[i]==1652572800000){
         get("lastdmbuy"+i+"bought").html(" sometime");
@@ -462,7 +465,7 @@ function stats(){
   }
   get("totaloj").html(decimal(game.totalobjs));
   get("maxobj").html(decimal(game.maxbjs));
-  if(game.totaldm<0){
+  if(game.totalobjs<0){
     get("hasobjbought").html("have never")
     get("lastobj").hide();
   }else{
@@ -480,6 +483,7 @@ function stats(){
       get("objbuy"+i+"stats").hide();
     }else{
       get("objbuy"+i+"stats").show();
+      get("hasobjbuy"+i+"bought").hide();
       get("totalobjbuy"+i+"bought").html(game.totalobjbuybought[i]);
       if(game.lastobjbuybought[i]==1652572800000){
         get("lastobjbuy"+i+"bought").html(" sometime");
