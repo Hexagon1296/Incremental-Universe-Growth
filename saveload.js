@@ -717,9 +717,9 @@ function handleoldversions() {
     game.totalobjbuybought = {
       1: game.objbuy1bought
     }
-    if(game.achievedata.includes(51)&&game.totalobjs<0){
-      game.totalobjs = 0;
-      game.maxobjs = 0;
+    if(game.achievedata.includes(51)&&game.totalobjs<log(2)){
+      game.totalobjs = log(2);
+      game.maxobjs = log(2);
     }
   }
 }
