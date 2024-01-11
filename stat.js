@@ -460,4 +460,42 @@ function stats(){
   }else{
     get("chal7stat").hide();
   }
+  get("totaloj").html(decimal(game.totalobjs));
+  get("maxobj").html(decimal(game.maxbjs));
+  if(game.totaldm<0){
+    get("hasobjbought").html("have never")
+    get("lastobj").hide();
+  }else{
+    get("hasobjbought").html("last")
+    get("lastobj").show();
+    if(game.lastobj==1652572800000){
+      get("lastobj").html(" sometime");
+    }else{
+      get("lastobj").html(" "+timebetween(game.lastobj,Date.now())+" ago");
+    }
+  }
+  for(let i in game.totalobjbuybought){
+    if(game.totalobjbuybought[i]<1){
+      get("hasobjbuy"+i+"bought").show();
+      get("objbuy"+i+"stats").hide();
+    }else{
+      get("objbuy"+i+"stats").show();
+      get("totalobjbuy"+i+"bought").html(game.totalobjbuybought[i]);
+      if(game.lastobjbuybought[i]==1652572800000){
+        get("lastobjbuy"+i+"bought").html(" sometime");
+      }else{
+        get("lastobjbuy"+i+"bought").html(timebetween(game.lastobjbuybought[i],Date.now())+" ago");
+      }
+    }
+  }
+  if(game.isobjsunlocked){
+    get("objstatbutton").show();
+  }else{
+    get("objstatbutton").hide();
+  }
+  if(game.objs>=0||game.totalobjbuybought[1]>0){
+    get("objbuy1bought").show();
+  }else{
+    get("objbuy1bought").hide();
+  }
 }
