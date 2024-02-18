@@ -1,15 +1,15 @@
 let binds = {
   d: () => {
-    buydim(false);
+    if(game.isdimunlocked) buydim(false);
   },
   k: () => {
-    buydm();
+    if(game.isdmunlocked) buydm();
   },
   o: () => {
-    getobjs();
+    if(game.isobjsunlocked) getobjs();
   },
   a: () => {
-    gainarmp();
+    if(game.subj>4) gainarmp();
   }
 }
 document.addEventListener("keydown", function(e){
