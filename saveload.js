@@ -191,7 +191,8 @@ function reset() {
     lasttick: Date.now(),
     achievedata: [],
     rowunlocked: [0],
-    version: 28
+    hotkeys: true,
+    version: 29
   };
   music.src = "music/" + musicfiles[game.musicidx];
   game.versionstarted = game.version;
@@ -219,10 +220,11 @@ function reset() {
   reject.volume = game.sfx;
   get("musicvolume").html(get("musicslider").prop("value"));
   get("sfxvolume").html(get("sfxslider").prop("value"));
-  get("upg5base").html(2 + game.chalfin.c2 / 2)
-  get("chaltotal").html(game.chalfin.total)
+  get("upg5base").html(2 + game.chalfin.c2 / 2);
+  get("chaltotal").html(game.chalfin.total);
   get("objs").html(decimal(game.objs));
   setcolors();
+  get("hotkeys").html("ON");
   subpage('dm', 'darkmatterupg');
   subpage('obj', 'objectupgs');
   subpage('opt', 'settings');
