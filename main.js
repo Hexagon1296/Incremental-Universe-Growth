@@ -17,7 +17,7 @@ var game;
   - Dark matter upgrades and buyables (You get the upgrades back)
   Goals: In DM
   You don't gain 1 dimension per second
-  Fractional completions
+  No i do NOT want Omega Challenge repeat
   The actual challenges:
   OC1:
     Effects: No i do NOT want Omega Challenge repeat
@@ -1093,6 +1093,7 @@ function renderloop(diff) {
     get("jtohsong").hide();
     get("jtohbreak").hide();
   }
+  get("hotkeyson").html(["OFF","ON"][Number(game.hotkeys)]);
   localStorage.setItem("iugsave", btoa(JSON.stringify(game)));
 }
 setInterval(function(){
