@@ -57,7 +57,7 @@
       <div class="button" onclick="buymainupg5()" id="upg5" tabindex="0">Upgrade 2's scaling starts <span id="upg5base">2</span>
         purchases later<br />&nbsp;Cost: <span id="upg5cost">1e50</span> m&nbsp;</div>
       <br />
-      <div class="dimbutton" onclick="buydim()" id="dim" tabindex="0">Reset all progress, but gain a dimension<br /> Req: <span
+      <div class="dimbutton" onclick="buydim()" id="dim" tabindex="0">Reset all progress, but gain a dimension (D)<br /> Req: <span
           id="dimcost">1e12</span> m&nbsp;</div><br />
       <p style="color: #F00; text-shadow: 0 0 5px #F00; line-height: 20px" id="antitext">Antimatter is rooting your
         universe gain by <span id="anti">1</span>!</p>
@@ -342,7 +342,7 @@
     <div style="text-align: center;">
       You have <span id="dm">0</span> dark matter.<br /><br />
       <div class="dmbutton" onclick="buydm()" id="gaindm" tabindex="0">&nbsp;Reset all previous progress in exchange for dark
-        matter&nbsp;<br />
+        matter (K)&nbsp;<br />
         &nbsp;You will gain <span id="dmgain">0</span> dark matter on reset&nbsp;<br />
         &nbsp;Next dark matter at <span id="nextdm">1e120</span> m&nbsp;</div><br />
       <p>Your dark matter is raising your universe grow ^<span id="dmboost">1</span></p><br />
@@ -416,8 +416,7 @@
   <section id="objects" class="page">
     <div style="text-align: center;">
       <div style="line-height: 24px">You have <span id="objs">0</span> objects.<br /><br />
-        <div class="objbutton" id="gainobjs" onclick="getobjs()" tabindex="0">&nbsp;Reset all previous progress, but gain
-          objects&nbsp;<br />
+        <div class="objbutton" id="gainobjs" onclick="getobjs()" tabindex="0">&nbsp;Reset all previous progress, but gain objects (O)&nbsp;<br />
           &nbsp;You will gain <span id="objgain">0</span> objects on reset&nbsp;<br />
           &nbsp;Next object at <span id="nextobj">1e225</span> dark matter&nbsp;</div><br />
         Your objects is multiplying your dark matter boost ×<span id="objboost">1</span><br /><br />
@@ -434,9 +433,8 @@
         </section>
         <section class="objsubpage subpage" id="antiremovetool">
           You have <span id="amrp">1</span> AMRP.<br /><br />
-          <div class="objbutton" onclick="gainamrp()" tabindex="0">Convert <span id="antiremovalobjtotal">3</span> objects into <span
-              id="amrpgain">1</span> Antimatter Removal Points<br />Next AMRP at <span id="nextamrp">8</span> objects
-          </div><br />
+          <div class="objbutton" onclick="gainamrp()" tabindex="0">Convert <span id="antiremovalobjtotal">3</span> objects into <span id="amrpgain">1</span> Antimatter Removal Points (A)<br />
+            Next AMRP at <span id="nextamrp">8</span> objects</div><br />
           Your AMRP is rooting your antimatter effect ^<span id="amrpboost">1</span>
         </section>
         <section class="objsubpage subpage" id="subjmiles">
@@ -481,7 +479,7 @@
                 <td class="milestone" id="milestone7">
                   1e3e6 meters<br />
                   <br />
-                  Increase the meter cap to 1e1e200
+                  All previous Object multipiers are squared, including the Object boost and upgrades.
                 </td>
                 <td class="milestone" id="milestone8">
                   1e3.6e6 meters<br />
@@ -491,8 +489,7 @@
                 <td class="milestone" colspan="2" id="milestone9">
                   1e4e6 meters<br />
                   <br />
-                  Dimensions save upon resets up to Objects, you gain 1 Dimension every second, improve the Antimatter
-                  Removal Tool, and unlock 1 new upgrade
+                  Dimensions save upon resets up to Objects, you gain 1 Dimension every second, improve the Antimatter Removal Tool, and unlock 1 new upgrade
                 </td>
               </tr>
               <td class="milestone" colspan="6" id="milestone10">
@@ -509,8 +506,7 @@
   <section id="achieve" class="page">
     <center>
       <h2><span id="totalach">0</span>/62 Achievements</h2>
-      Progress in the game to earn achievements! They don't give any boost and are purely for bragging. <small><i>shut
-          up that line isn't stolen from ordinal markup</i></small>
+      Progress in the game to earn achievements! They don't give any boost and are purely for bragging. <small><i>shut up that line isn't stolen from ordinal markup</i></small>
       <br /><br />
       <table>
         <tbody id="achievetable">
@@ -623,18 +619,18 @@
       <p>You have played the game for <span id="timeplaying">1 year, 5 months, 3 days</span></p>
       <p>You started playing on version <span id="versionstarted">v0.2.4.3</span> <i>(Internal version number <span id="internalversion">18</span>)</i></p>
       <br/>
-      <div class="button" onclick="subpage('stat','mainstat')">Main</div>
+      <div class="button" onclick="subpage('stat','mainstat')" tabindex="0">Main</div>
       <span id="autostatbutton">
         &nbsp;
-        <div class="button" onclick="subpage('stat','autostat')">Automation</div>
+        <div class="button" onclick="subpage('stat','autostat')" tabindex="0">Automation</div>
       </span>
       <span id="dmstatbutton">
         &nbsp;
-        <div class="dmbutton" onclick="subpage('stat','dmstat')">Dark Matter</div>
+        <div class="dmbutton" onclick="subpage('stat','dmstat')" tabindex="0">Dark Matter</div>
       </span>
       <span id="objstatbutton">
         &nbsp;
-        <div class="objbutton" onclick="subpage('stat','objstat')">Dark Matter</div>
+        <div class="objbutton" onclick="subpage('stat','objstat')" tabindex="0">Objects</div>
       </span>
       <section class="statsubpage subpage" id="mainstat">
         <p>You have <span id="hasupg1bought" style="display: none">never</span> bought upgrade 1<span id="upg1stats"> a total of <span id="totalupg1bought">1</span> time(s), and last bought it <span id="lastupg1bought">1 year, 5 months, 3 days ago</span></span></p>
