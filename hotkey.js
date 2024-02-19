@@ -14,5 +14,5 @@ let binds = {
 }
 document.addEventListener("keydown", function(e){
   let key = e.key.toLowerCase();
-  if(binds[e]&&game.hotkeys) binds[e]();
+  if(binds[key]&&game.hotkeys) binds[key]();
 })
