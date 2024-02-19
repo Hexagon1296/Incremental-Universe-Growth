@@ -192,7 +192,7 @@ function reset() {
     achievedata: [],
     rowunlocked: [0],
     hotkeys: true,
-    version: 29
+    version: 30
   };
   music.src = "music/" + musicfiles[game.musicidx];
   game.versionstarted = game.version;
