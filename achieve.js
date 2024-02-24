@@ -232,9 +232,9 @@ var achieve = [
       'These challenges aren\'t factors',
       'Crazy!',
       'Pθrtλl 3 CONFIRMED',
-      'Bigger universe = more fun',
+      'Squared²',
       'Objects sells Chλllenges now!',
-      'I Assure You It\'s Quite Subjective',
+      'We Don\'t Have 2.51e26 Objects',
       'All Your Subjective Are Belong To Us'
     ],
     tooltips: [
