@@ -231,7 +231,7 @@ var achieve = [
       'W H Y dark matter',
       'These challenges aren\'t factors',
       'Crazy!',
-      'Universe Expander Reloaded Confirmed!',
+      'Pθrtλl 3 CONFIRMED',
       'Bigger universe = more fun',
       'Objects sells Chλllenges now!',
       'I Assure You It\'s Quite Subjective',
