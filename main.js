@@ -79,7 +79,7 @@ var jtohmusic = [
   ["ToS: Floor 4", "", "", "CoIS: Floor 8"],
   ["ToAST: Floor 2", "ToPHaT: Floors 5 & 6", "", "ToES: Floors 8-10", "", "ToFN: Floor 6", "", "ToFN: Floors 7 & 8"],
   ["ToR: Floors 7-9", "ToC: Floors 7 & 8", "", "", "", "", "", "", "???"],
-  ["CoP: Floor 1", "", "", "", "ToTH: Floor 10", "", "ToSP: Floor 9", "ToCR: Floor 10", "ToIB: Floor 9", "???", "???", "???"]
+  ["CoP: Floor 1", "", "", "", "ToTH: Floor 10", "", "ToSP: Floor 9", "ToCR: Floor 10", "ToIB: Floor 9", "", "", ""]
 ]
 music.loop = true;
 reset();
