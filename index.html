@@ -31,7 +31,7 @@
     &nbsp;
     <div class="button" onclick="switchpage('achieve')" tabindex="0">&nbsp;Achievements&nbsp;</div>
     <span id="upg">&nbsp;
-      <div class="button" onclick="switchpage('automation')" tabindex="0">&nbsp;Automation&nbsp;</div>
+      <div class="button" onclick="switchpage('helper')" tabindex="0">&nbsp;Helpers&nbsp;</div>
     </span><span id="dmupg"> &nbsp;
       <div class="dmbutton" onclick="switchpage('darkmatter')" tabindex="0">&nbsp;Dark Matter&nbsp;</div>
     </span><span id="objupg">&nbsp;
@@ -292,13 +292,31 @@
       </center>
     </section>
     <section id="info" class="optsubpage subpage">
-      <span style="line-height: 25px">Current Version: v0.2.5.4 </span><i><span style="font-size: 12px">[February 24, 2024,
-          12:13 PM EST]</span></i><br />
+      <span style="line-height: 25px">Current Version: v0.2.6 - </span><i>The Backlash Update<span style="font-size: 12px">[February 25, 2024,
+          ??:?? PM EST]</span></i><br />
+      <p>
+        <i>Description: I did not expect this backlash from the community</i>
+      </p>
       <ul>
-        <li>Changed 3 achievement names</li>
+        <li>Backlash from the timewalls meant I may of done some anti--Danielt- stuff by accident.</li>
+        <li>Added Max All. People were complaining about needing to spamclicking upgrade 1 so I gave them a lot more.</li>
+        <li>"Automation" renamed to "Helpers" because of this</li>
+        <li>
+          Split and renamed a couple helpers:
+          <ul>
+            <li>"Automate 1st and 3rd main upgrades" → "Automate Max All, but only for upgrades 1 and 3"</li>
+            <li>"Automate the rest of the main upgrades" → "Automate the rest of Max All," "Max All buys Upgrade 5. This doesn't effect
+              other helpers," "Auto Max All now buys upgrade 5 and Antimatter upgrade 2"</li>
+            <li>"Automate everything before dark matter" → "Automate resetting for Dimensions," "Auto Max All now buys upgrade 5
+              and Antimatter upgrade 2"</li>
+          </ul>
+        </li>
       </ul>
       <p>
-        <i>This game is licensed under the <a href="https://opensource.org/license/mit/">MIT License</a></i>
+        <i>This game is licensed under the
+          <a style="color: #00a0ff; cursor: pointer; text-decoration: underline;"
+            href="https://opensource.org/license/mit/">MIT License</a>
+        </i>
       </p>
       <p style="line-height: 25px">An HTML remake of two of my
         <a style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
@@ -315,30 +333,46 @@
           style="color: #00a0ff; cursor: pointer; text-decoration: underline;" target="_blank"
           href="https://mrredshark77.github.io/incremental-mass-rewritten/">Incremental Mass Rewritten</a>
         <br /><br />
-        Coming in the next major update (v0.2.6):
+        Coming in the next major update (v0.2.7):
       <ul>
-        <li>More Subjective Milestones (likely Objective Challenges)</li>
+        <li>I should stop procrastinating and get back to the actual game</li>
       </ul><br />
       <div onclick="openwiki()" class="button" tabindex="0">&nbsp;IUG Wiki&nbsp;</div>&nbsp;&nbsp;
       <div onclick="openserver()" class="button" tabindex="0">&nbsp;IUG: The Server&nbsp;</div>
     </section>
   </section>
-  <section id="automation" class="page">
+  <section id="helper" class="page">
     <center>
-      <span style="line-height: 0">
+      <div class="button" onclick="subpage('help', 'mainhelp')" tabindex="0">&nbsp;Main&nbsp;</div> &nbsp;
+      <span id="dmhelp">&nbsp;
+        <div class="dmbutton" onclick="subpage('help', 'dmhelp')" tabindex="0">&nbsp;Helpers&nbsp;</div>
+      </span>
+      <section id="mainhelp" class="helpsubpage subpage" style="line-height: 0">
+        <div class="button" onclick="buymaxall()" id="unlockmaxall" tabindex="0">&nbsp;Unlock Max All for upgrades 1-4
+          &nbsp;<br />Cost: <div id="maxallcost">3e14</div> m</div><br />
         <div class="button" onclick="buyupg1()" id="autoantiupg1" tabindex="0">&nbsp;Automate first antimatter
           upgrade&nbsp;<br />Cost: 1e60 m</div><br />
-        <div class="button" onclick="buyupg2()" id="automainupg1-3" tabindex="0">&nbsp;Automate 1st and 3rd main
-          upgrades&nbsp;<br />Cost: 1e87 m</div><br />
-        <div class="button" onclick="buyupg3()" id="automain" tabindex="0">&nbsp;Automate the rest of the main
-          upgrades&nbsp;<br />Cost: 1e129 m</div><br />
-        <div class="button" onclick="buyupg4()" id="autouptodm" tabindex="0">&nbsp;Automate everything before dark
-          matter&nbsp;<br />Cost: 1e135 m</div><br />
+        <div class="button" onclick="buyupg2()" id="automainupg1-3" tabindex="0">&nbsp;Automate Max All, but only for upgrades 1 and 3
+          &nbsp;<br />Cost: 1e87 m</div><br />
+        <div class="button" onclick="buyupg3()" id="automainupg2-4" tabindex="0">&nbsp;Automate the rest of Max All
+          upgrades&nbsp;<br />Cost: 2e100 m</div><br />
+        <div class="button" onclick="buymaxupg5()" id="automain" tabindex="0">&nbsp;Max All buys Upgrade 5. This doesn't effect
+          other helpers&nbsp;<br />Cost: 2.5e129 m</div><br />
+        <div class="button" onclick="buyupg4()" id="autodim" tabindex="0">&nbsp;Automate resetting for Dimensions
+          &nbsp;<br />Cost: 1e135 m</div><br />
+        <div class="button" onclick="buyautoupg5()" id="autoupg5" tabindex="0">&nbsp;Auto Max All now buys upgrade 5 and Antimatter
+          upgrade 2&nbsp;<br />Cost: 4e145 m</div><br />
         <div class="button" onclick="buyupg5()" id="autodm" tabindex="0">&nbsp;Get dark matter gain every second&nbsp;<br />Cost:
-          1e145 m</div><br />
+          1e156 m</div><br />
         <div class="button" onclick="buyupg6()" id="dimresetless" tabindex="0">&nbsp;Getting a dimension doesn't
           reset&nbsp;<br />Cost: 1e180 m</div><br />
-      </span>
+      </section>
+      <section id="dmhelp" class="helpsubpage subpage" style="line-height: 0">
+        <div class="dmbutton" onclick="buydmmaxall()" id="unlockdmmaxall" tabindex="0">&nbsp;Unlock Max All for dark matter buyables 1 and 2
+          &nbsp;<br />Cost: <div id="maxallcost">3e14</div> m</div><br />
+        <div class="dmbutton" onclick="buyupg7()" id="autodmbuy" tabindex="0">&nbsp;Automate dark matter buyables 1 &
+          2&nbsp;<br />Cost: 3e96 dark matter</div>
+      </section>
     </center>
   </section>
   <section id="darkmatter" class="page">
@@ -371,9 +405,7 @@
         <div class="dmbutton" onclick="buydmbuy3()" id="dmbuy3" tabindex="0">&nbsp;Multiply dark matter boost by
           1.05&nbsp;<br />&nbsp;Cost: <span id="dmbuy3cost">1,000,000</span> dark matter&nbsp;</div><br />
         <div class="dmbutton" onclick="extendchal()" id="extendchal" tabindex="0"><b>Extend Challenges</b><br />Req: 4e10 dark matter
-        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="dmbutton" onclick="buyupg7()" id="autodmbuy" tabindex="0">&nbsp;Automate dark matter buyables 1 &
-          2&nbsp;<br />Cost: 3e96 dark matter</div>
+        </div>
       </section>
     </div>
     <section style="line-height: 0;" id="challenge" class="dmsubpage subpage">
@@ -650,12 +682,12 @@
         <p id="antiupg2bought">You have <span id="hasantiupg2bought" style="display: none">never</span> bought antimatter upgrade 2<span id="antiupg2stats"> a total of <span id="totalantiupg2bought">1</span> time(s), and last bought it <span id="lastantiupg2bought">1 year, 5 months, 3 days ago</span></span></p>
       </section>
       <section id="autostat" class="statsubpage subpage">
-        <p id="autoupg1bought">You <span id="hasautoupg1bought" style="display: none">haven't</span> bought automation upgrade 1 <span id="whenautoupg1bought">1 year, 5 months, 3 days ago</span></p>
-        <p id="autoupg2bought">You <span id="hasautoupg2bought" style="display: none">haven't</span> bought automation upgrade 2 <span id="whenautoupg2bought">1 year, 5 months, 3 days ago</span></p>
-        <p id="autoupg3bought">You <span id="hasautoupg3bought" style="display: none">haven't</span> bought automation upgrade 3 <span id="whenautoupg3bought">1 year, 5 months, 3 days ago</span></p>
-        <p id="autoupg4bought">You <span id="hasautoupg4bought" style="display: none">haven't</span> bought automation upgrade 4 <span id="whenautoupg4bought">1 year, 5 months, 3 days ago</span></p>
-        <p id="autoupg5bought">You <span id="hasautoupg5bought" style="display: none">haven't</span> bought automation upgrade 5 <span id="whenautoupg5bought">1 year, 5 months, 3 days ago</span></p>
-        <p id="autoupg6bought">You <span id="hasautoupg6bought" style="display: none">haven't</span> bought automation upgrade 6 <span id="whenautoupg6bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg1bought">You <span id="hasautoupg1bought" style="display: none">haven't</span> bought helper 2 <span id="whenautoupg1bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg2bought">You <span id="hasautoupg2bought" style="display: none">haven't</span> bought helper 3 <span id="whenautoupg2bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg3bought">You <span id="hasautoupg3bought" style="display: none">haven't</span> bought helper 4 <span id="whenautoupg3bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg4bought">You <span id="hasautoupg4bought" style="display: none">haven't</span> bought helper 6 <span id="whenautoupg4bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg5bought">You <span id="hasautoupg5bought" style="display: none">haven't</span> bought helper 8 <span id="whenautoupg5bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg6bought">You <span id="hasautoupg6bought" style="display: none">haven't</span> bought helper 9 <span id="whenautoupg6bought">1 year, 5 months, 3 days ago</span></p>
       </section>
       <section id="dmstat" class="statsubpage subpage">
         <p>You have had a total of <span id="totaldm">1</span> dark matter, and <span id="hasdmbought">last</span> reset for it<span id="lastdm"> 1 year, 5 months, 3 days ago</span></p>
