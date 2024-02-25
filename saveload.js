@@ -26,10 +26,13 @@ function reset() {
     dimcost: 12,
     isdimunlocked: false,
     antieffect: 1,
+    ishelp1bought: false,
     isupg1bought: false,
     isupg2bought: false,
     isupg3bought: false,
+    ishelp5bought: false,
     isupg4bought: false,
+    ishelp7bought: false,
     isupg5bought: false,
     isupg6bought: false,
     dm: -Infinity,
@@ -43,7 +46,7 @@ function reset() {
     dmbuy2bought: 0,
     dmbuy3cost: 6,
     dmbuy3bought: 0,
-    dmcap: 1,
+    isdmhelp1bought: false,
     isdmupg1bought: false,
     isdmupg2bought: false,
     isdmupg3bought: false,
@@ -129,7 +132,13 @@ function reset() {
       3: 1652572800000,
       4: 1652572800000,
       5: 1652572800000,
-      6: 1652572800000
+      6: 1652572800000,
+      7: 1652572800000,
+      8: 1652572800000,
+      9: 1652572800000
+    },
+    dmhelpbought: {
+      1: 1652572800000
     },
     totaldm: -Infinity,
     maxdm: -Infinity,
@@ -192,7 +201,7 @@ function reset() {
     achievedata: [],
     rowunlocked: [0],
     hotkeys: true,
-    version: 30
+    version: 31
   };
   music.src = "music/" + musicfiles[game.musicidx];
   game.versionstarted = game.version;
@@ -723,6 +732,16 @@ function handleoldversions() {
       game.totalobjs = log(2);
       game.maxobjs = log(2);
     }
+  }
+  if(game.version<31){
+    game.version = 31;
+    game.autobought[7] = Date.now();
+    game.autobought[8] = Date.now();
+    game.autobought[9] = Date.now();
+    if(game.isupg2bought) game.ishelp1bought = true;
+    if(game.isupg3bought) game.ishelp5bought = true;
+    if(game.isupg4bought) game.ishelp7bought = true;
+    if(game.isdmupg3bought) game.isdmhelp1bought = true;
   }
 }
 function loadsave() {
