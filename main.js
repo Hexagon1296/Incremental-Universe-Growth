@@ -72,7 +72,7 @@ var musicnames = [
   ["A Hat in Time - Scootin' Through Clocktowers Beneath the Sea", "Diamond Ortiz - Mirror Mirror", "Bund6", "Celeste - Ressurections"],
   ["Better Off Alone (DJ Glejs Remix)", "Yumi Rose - Tired", "Arseniy Shkliaeva - Nuclearoids", "Mario Kart 8 - Toad's Turnpike", "Centerpiece", "Dimrain47 - Infernoplex", "ParagonX9 - Red 13", "Dimrain47 - Forsaken Neon"],
   ["Miami Hotline Vol.3 - Demonicity", "DM DOKURO - Universal Collapse", "Underwater Beats - Delete!", "Glitchtale OST - Bring it On [Dual Mix]", "Helbinde - Solace of Oblivion", "F-777 - Space Battle", "Dark, Darker, Yet Darker", "Space - Abyss", "???"],
-  ["A Hat in Time - Death Wish", "Super Mario Galaxy 2 - The Perfect Run (Part 3)", "In the Final - Mario & Luigi: Bowser's Inside Story (GaMetal Remix)", "Yoshi's Island Final Boss Metal Remix", "Synergetic Enigma", "Xtrullor - The Armor of God", "Fight Fight Fight", "Glitchtale - Dreemurs United vs. Betty", "Rose at Midnight", "???", "???", "???"]
+  ["A Hat in Time - Death Wish", "Super Mario Galaxy 2 - The Perfect Run (Part 3)", "In the Final - Mario & Luigi: Bowser's Inside Story (GaMetal Remix)", "Yoshi's Island Final Boss Metal Remix", "Synergetic Enigma", "Xtrullor - The Armor of God", "Fight Fight Fight", "Glitchtale - Dreemurs United vs. Betty", "Rose at Midnight", "???", "???", "War (Thousand March) - RichaadEB"]
 ]
 var jtohmusic = [
   ["", "CoHaD: Floor 9", "ToTS: Floor 1", "", "", "Zone 1"],
