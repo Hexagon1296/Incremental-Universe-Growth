@@ -55,6 +55,8 @@
       <div class="button" onclick="buymainupg4()" id="upg4" tabindex="0">Increase upgrade 2's base by 0.5<br />&nbsp;Cost: <span
           id="upg4cost">10,000</span> m&nbsp;</div>
       <br />
+      <div class="button" onclick="maxall()" id="maxall" tabindex="0">Max all of the above upgrades (M)</div>
+      <br/>
       <div class="button" onclick="buymainupg5()" id="upg5" tabindex="0">Upgrade 2's scaling starts <span id="upg5base">2</span>
         purchases later<br />&nbsp;Cost: <span id="upg5cost">1e50</span> m&nbsp;</div>
       <br />
@@ -298,7 +300,7 @@
         <i>Description: I did not expect this backlash from the community</i>
       </p>
       <ul>
-        <li>Backlash from the timewalls meant I may of done some anti--Danielt- stuff by accident.</li>
+        <li>Backlash from the timewalls meant I may of done some anti-Danielt stuff by accident.</li>
         <li>Added Max All. People were complaining about needing to spamclicking upgrade 1 so I gave them a lot more.</li>
         <li>"Automation" renamed to "Helpers" because of this</li>
         <li>
@@ -399,6 +401,9 @@
         <div class="dmbutton" onclick="buydmbuy2()" id="dmbuy2" tabindex="0">&nbsp;Antimatter effect starts <span
             id="dm2mult">2.5</span>x later&nbsp;<br />&nbsp;Cost: <span id="dmbuy2cost">40</span> dark matter&nbsp;
         </div><br />
+        <div class="dmbutton" onclick="maxalldm()" id="maxalldm" tabindex="0">
+          Max all of the above buyables (M)</div>
+        <br/>
         <div class="dmbutton" onclick="unlockchal()" id="unlockchal" tabindex="0"><b>Unlock Challenges</b><br />Req: 8,000,000 dark
           matter</div>
         <span id="dmspace3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -682,12 +687,18 @@
         <p id="antiupg2bought">You have <span id="hasantiupg2bought" style="display: none">never</span> bought antimatter upgrade 2<span id="antiupg2stats"> a total of <span id="totalantiupg2bought">1</span> time(s), and last bought it <span id="lastantiupg2bought">1 year, 5 months, 3 days ago</span></span></p>
       </section>
       <section id="autostat" class="statsubpage subpage">
+        <p id="autoupg7bought">You <span id="hasautoupg7bought" style="display: none">haven't</span> bought helper 1 <span id="whenautoupg7bought">1 year, 5 months, 3 days ago</span></p>
         <p id="autoupg1bought">You <span id="hasautoupg1bought" style="display: none">haven't</span> bought helper 2 <span id="whenautoupg1bought">1 year, 5 months, 3 days ago</span></p>
         <p id="autoupg2bought">You <span id="hasautoupg2bought" style="display: none">haven't</span> bought helper 3 <span id="whenautoupg2bought">1 year, 5 months, 3 days ago</span></p>
         <p id="autoupg3bought">You <span id="hasautoupg3bought" style="display: none">haven't</span> bought helper 4 <span id="whenautoupg3bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg7bought">You <span id="hasautoupg8bought" style="display: none">haven't</span> bought helper 5 <span id="whenautoupg8bought">1 year, 5 months, 3 days ago</span></p>
         <p id="autoupg4bought">You <span id="hasautoupg4bought" style="display: none">haven't</span> bought helper 6 <span id="whenautoupg4bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="autoupg7bought">You <span id="hasautoupg9bought" style="display: none">haven't</span> bought helper 7 <span id="whenautoupg9bought">1 year, 5 months, 3 days ago</span></p>
         <p id="autoupg5bought">You <span id="hasautoupg5bought" style="display: none">haven't</span> bought helper 8 <span id="whenautoupg5bought">1 year, 5 months, 3 days ago</span></p>
         <p id="autoupg6bought">You <span id="hasautoupg6bought" style="display: none">haven't</span> bought helper 9 <span id="whenautoupg6bought">1 year, 5 months, 3 days ago</span></p>
+        <hr/>
+        <p id="dmhelp1bought">You <span id="hasdmhelp1bought" style="display: none">haven't</span> bought dark matter helper 1 <span id="whendmhelp1bought">1 year, 5 months, 3 days ago</span></p>
+        <p id="dmupg3bought">You <span id="hasdmupg3bought">last</span> bought dark matter upgrade 3<span id="lastdmupg3bought"> 1 year, 5 months, 3 days ago</span></p>
       </section>
       <section id="dmstat" class="statsubpage subpage">
         <p>You have had a total of <span id="totaldm">1</span> dark matter, and <span id="hasdmbought">last</span> reset for it<span id="lastdm"> 1 year, 5 months, 3 days ago</span></p>
@@ -698,7 +709,6 @@
         <p id="dmbuy1bought">You have <span id="hasdmbuy1bought" style="display: none">never</span> bought dark matter buyable 1<span id="dmbuy1stats"> a total of <span id="totaldmbuy1bought">1</span> time(s), and last bought it <span id="lastdmbuy1bought">1 year, 5 months, 3 days ago</span></span></p>
         <p id="dmupg2bought">You <span id="hasdmupg2bought">last</span> bought dark matter upgrade 2<span id="lastdmupg2bought"> 1 year, 5 months, 3 days ago</span></p>
         <p id="dmbuy2bought">You have <span id="hasdmbuy2bought" style="display: none">never</span> bought dark matter buyable 2<span id="dmbuy2stats"> a total of <span id="totaldmbuy2bought">1</span> time(s), and last bought it <span id="lastdmbuy2bought">1 year, 5 months, 3 days ago</span></span></p>
-        <p id="dmupg3bought">You <span id="hasdmupg3bought">last</span> bought dark matter upgrade 3<span id="lastdmupg3bought"> 1 year, 5 months, 3 days ago</span></p>
         <p id="dmbuy3bought">You have <span id="hasdmbuy3bought" style="display: none">never</span> bought dark matter buyable 3<span id="dmbuy3stats"> a total of <span id="totaldmbuy3bought">1</span> time(s), and last bought it <span id="lastdmbuy3bought">1 year, 5 months, 3 days ago</span></span></p>
         <div id="chalstats">
           <hr>
