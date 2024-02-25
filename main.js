@@ -182,6 +182,39 @@ function buymainupg4(auto) {
     }
   }
 }
+function maxall(auto){
+  let total = 0;
+  let oldmincost = Infinity;
+  while(true){
+    let min = 1;
+    let mincost = Infinity;
+    for(let i = 1;i<6;i++){
+      let cost = game["upg"+String(i)+"cost"];
+      if(cost<mincost){
+        min = i;
+        mincost = cost;
+      }
+    }
+    if(mincost>game.clicks||oldmincost==mincost){
+      if(!auto){
+        if(total==0){
+          reject.currentTime = 0;
+          reject.play();
+        }else{
+          buy.currentTime = 0;
+          buy.play();
+        }
+      }
+      return;
+    }
+    if(min==1) buymainupg1(true);
+    if(min==2&&(!auto||game.isupg2bought)) buymainupg2(true);
+    if(min==3) buymainupg3(true);
+    if(min==4&&(!auto||game.isupg2bought)) buymainupg4(true);
+    if(min==5&&((!auto||game.ishelp7bought)&&game.ishelp5bought)) buymainupg5(true);
+    if(min==1||min==3||((min==2||min==4)&&(!auto||game.isupg2bought))||(min==5&&((!auto||game.ishelp7bought)&&game.ishelp5bought))) total++;
+  }
+}
 function buymainupg5(auto) {
   if (game.clicks >= game.upg5cost && !(inchal(5) || inchal(2))) {
     game.clicks = subtract(game.clicks, game.upg5cost);
@@ -397,6 +430,34 @@ function buydmbuy2(auto) {
       reject.play();
     }
   }
+}
+function maxalldm(){
+  let total = 0;
+  let oldmincost = Infinity;
+  while(true){
+    let min = 1;
+    let mincost = Infinity;
+    for(let i = 1;i<2;i++){
+      let cost = game["dmbuy"+String(i)+"cost"];
+      if(cost<mincost){
+        min = i;
+        mincost = cost;
+      }
+    }
+    if(mincost>game.dm||oldmincost==mincost){
+      if(!auto){
+        if(total==0){
+          reject.currentTime = 0;
+          reject.play();
+        }else{
+          buy.currentTime = 0;
+          buy.play();
+        }
+      }
+      return;
+    }
+    if(min==1) buydmbuy1(true);
+    if(min==2) buydmbuy2(true);
 }
 function buydmbuy3() {
   if (game.dm >= game.dmbuy3cost) {
