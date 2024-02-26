@@ -207,12 +207,25 @@ function maxall(auto){
       }
       return;
     }
-    if(min==1) buymainupg1(true);
+    if(min==1&&(!auto||game.upg1bought<=25||mincost<game.clicks-2)) buymainupg1(true);
     if(min==2&&(!auto||game.isupg2bought)) buymainupg2(true);
-    if(min==3) buymainupg3(true);
+    if(min==3&&(!auto||mincost<game.clicks-2)) buymainupg3(true);
     if(min==4&&(!auto||game.isupg2bought)) buymainupg4(true);
     if(min==5&&((!auto||game.ishelp7bought)&&game.ishelp5bought)) buymainupg5(true);
     if(min==1||min==3||((min==2||min==4)&&(!auto||game.isupg2bought))||(min==5&&((!auto||game.ishelp7bought)&&game.ishelp5bought))) total++;
+    oldmincost = mincost
+  }
+}
+function buymaxall(){
+  if (game.clicks>=14+log(3)&&!(game.ishelp1bought)) {
+    game.clicks = subtract(game.clicks,14+log(3));
+    buy.currentTime = 0;
+    buy.play();
+    game.isupg1bought = true;
+    game.autobought[7] = Date.now();
+  } else {
+    reject.currentTime = 0;
+    reject.play();
   }
 }
 function buymainupg5(auto) {
@@ -744,11 +757,6 @@ $("#XeYeZ").change(e => {
   game.notate.XeYeZ = e.target.checked;
   fixdisplays();
 })
-document.onkeydown = e => {
-  if (e.key === "Enter") {
-    document.activeElement.click();
-  }
-}
 function gameloop(diff) {
   if (game.isupg1bought) { buyantiupg1(true); }
   if (game.isupg2bought) {
