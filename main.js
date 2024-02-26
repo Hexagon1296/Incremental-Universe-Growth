@@ -221,7 +221,7 @@ function buymaxall(){
     game.clicks = subtract(game.clicks,14+log(3));
     buy.currentTime = 0;
     buy.play();
-    game.isupg1bought = true;
+    game.ishelp1bought = true;
     game.autobought[7] = Date.now();
   } else {
     reject.currentTime = 0;
@@ -471,6 +471,19 @@ function maxalldm(){
     }
     if(min==1) buydmbuy1(true);
     if(min==2) buydmbuy2(true);
+  }
+}
+function buydmmaxall(){
+  if (game.dm>=7+log(2.5)&&!(game.isdmhelp1bought)) {
+    game.dm = subtract(game.dm,7+log(2.5));
+    buy.currentTime = 0;
+    buy.play();
+    game.isdmhelp1bought = true;
+    game.dmhelpbought[1] = Date.now();
+  } else {
+    reject.currentTime = 0;
+    reject.play();
+  }
 }
 function buydmbuy3() {
   if (game.dm >= game.dmbuy3cost) {
@@ -560,7 +573,7 @@ function buyupg6() {
   }
 }
 function buyupg7() {
-  if (game.dm >= log(3.333) + 96 && !(game.isdmupg3bought)) {
+  if (game.dm >= log(3) + 96 && !(game.isdmupg3bought)) {
     game.dm = subtract(game.dm, log(3) + 96);
     game.hasdmupgbought[3] = true;
     game.lastdmupgbought[3] = Date.now();
@@ -574,7 +587,7 @@ function buyupg7() {
 }
 function getobjs() {
   if (game.dm >= 225) {
-    if (game.clicks > game.maxobjm && objgain < 1) {
+    if (game.clicks > game.maxobjm && objgain < log(5)) {
       game.maxobjm = game.clicks;
       get("maxobjm").html(decimal(game.maxobjm));
     }
