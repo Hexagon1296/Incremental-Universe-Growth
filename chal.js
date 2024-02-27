@@ -39,7 +39,7 @@ function inchal(chal) {
   }
 }
 function enterchal(chal, idx) {
-  if (isNaN(idx)) { idx = 0; }
+  if (isNaN(idx)||idx==undefined) { idx = 0; }
   if (game.chal[idx] === false && confirm('Are you sure you want to enter this challenge?')) {
     game.chal[idx] = chal;
     game.clicks = -Infinity;
