@@ -1,7 +1,7 @@
 var gsave = localStorage.getItem("iugsave");
 var game;
 /* 
- 
+
   OBJECT NOTES:
   Objects should end about 1e1e10 universe size
   SM is early-mid objects feature
@@ -12,7 +12,7 @@ var game;
   - Dimensions
   - Main upgrades
   - Antimatter upgrades
-  - Automation (You get them back)maxob
+  - Automation (You get them back)
   - Dark matter (You get 1/12 of what you had back)
   - Dark matter upgrades and buyables (You get the upgrades back)
   Goals: In DM
@@ -47,7 +47,7 @@ var game;
   Challenges will disable everything except multiverse boost and upgrade 1, with main having completely different upgrades in challenges
   Every challenge goal will be 1e125
   Should end 1e1.798e308 universe size. Then, the game is over. (Because break_infinity breaks here).
- 	OTHER NOTES:
+  OTHER NOTES:
   Every prestige layer should have challenges
   Ability to enable/disable automators
   Completely rebalence the game
@@ -184,18 +184,18 @@ function buymainupg4(auto) {
 }
 function maxall(auto){
   let total = 0;
-  let oldmincost = Infinity;
   while(true){
-    let min = 1;
+    let min = 0;
     let mincost = Infinity;
+    let will = [!auto||(game.upg1bought<=25)||(game.upg1cost<game.clicks-2),!auto||game.isupg3bought,!auto||(game.upg3cost<game.clicks-2),!auto||game.isupg3bought,(!auto||game.ishelp7bought)&&game.ishelp5bought];
     for(let i = 1;i<6;i++){
       let cost = game["upg"+String(i)+"cost"];
-      if(cost<mincost){
+      if(cost<mincost&&will[i-1]){
         min = i;
         mincost = cost;
       }
     }
-    if(mincost>game.clicks||oldmincost==mincost){
+    if(mincost>game.clicks||min==0){
       if(!auto){
         if(total==0){
           reject.currentTime = 0;
@@ -207,16 +207,12 @@ function maxall(auto){
       }
       return;
     }
-    let will = [!auto||game.upg1bought<=25||mincost<game.clicks-2,!auto||game.isupg3bought,!auto||mincost<game.clicks-2,!auto||game.isupg3bought,(!auto||game.ishelp7bought)&&game.ishelp5bought]
-    if(will[min-1]){
-      if(min==1) buymainupg1(true);
-      if(min==2) buymainupg2(true);
-      if(min==3) buymainupg3(true);
-      if(min==4) buymainupg4(true);
-      if(min==5) buymainupg5(true);
-      total++;
-    }
-    oldmincost = mincost
+    if(min==1) buymainupg1(true);
+    if(min==2) buymainupg2(true);
+    if(min==3) buymainupg3(true);
+    if(min==4) buymainupg4(true);
+    if(min==5) buymainupg5(true);
+    total++;
   }
 }
 function buymaxall(){
@@ -449,18 +445,18 @@ function buydmbuy2(auto) {
 }
 function maxalldm(){
   let total = 0;
-  let oldmincost = Infinity;
   while(true){
-    let min = 1;
+    let min = 0;
     let mincost = Infinity;
+    let will = [true,true]
     for(let i = 1;i<2;i++){
       let cost = game["dmbuy"+String(i)+"cost"];
-      if(cost<mincost){
+      if(cost<mincost&&will[i-1]){
         min = i;
         mincost = cost;
       }
     }
-    if(mincost>game.dm||oldmincost==mincost){
+    if(mincost>game.dm||min==0){
       if(!auto){
         if(total==0){
           reject.currentTime = 0;
@@ -544,7 +540,7 @@ function buymaxupg5() {
     game.clicks = subtract(game.clicks, log(2.5)+129);
     buy.currentTime = 0;
     buy.play();
-    game.isupg4bought = true;
+    game.ishelp5bought = true;
     game.autobought[8] = Date.now();
   } else {
     reject.currentTime = 0;
@@ -563,12 +559,12 @@ function buyupg4() {
     reject.play();
   }
 }
-function buymaxupg5() {
-  if (game.clicks >= log(4)+145 && !(game.ishelp5bought)) {
+function buyautoupg5() {
+  if (game.clicks >= log(4)+145 && !(game.ishelp7bought)) {
     game.clicks = subtract(game.clicks, log(4)+145);
     buy.currentTime = 0;
     buy.play();
-    game.isupg4bought = true;
+    game.ishelp7bought = true;
     game.autobought[9] = Date.now();
   } else {
     reject.currentTime = 0;
@@ -754,6 +750,7 @@ function fixdisplays() {
   $("#upg2cost").html(decimal(game.upg2cost));
   $("#upg3cost").html(decimal(game.upg3cost));
   $("#upg4cost").html(decimal(game.upg4cost));
+  $("#maxallcost").html(decimal(14+log(3)));
   $("#upg5cost").html(decimal(game.upg5cost));
   $("#antiupg1cost").html(decimal(game.antiupg1cost));
   $("#antiupg2cost").html(decimal(game.antiupg2cost));
@@ -761,6 +758,7 @@ function fixdisplays() {
   $("#dm").html(decimal(game.dm));
   $("#dmbuy1cost").html(decimal(game.dmbuy1cost));
   $("#dmbuy2cost").html(decimal(game.dmbuy2cost));
+  $("#dmmaxallcost").html(decimal(7+log(2.5)));
   $("#dmbuy3cost").html(decimal(game.dmbuy3cost));
   $("#maxobjm").html(decimal(game.maxobjm));
   $("#objbuy1cost").html(decimal(game.objbuy1cost));
@@ -850,12 +848,15 @@ function gameloop(diff) {
   } else if (inchal(4) || inchal(7)) {
     game.antieffect = (Math.pow(game.clicks - 5, 1.25) - 1) / Math.pow(1.44, game.antiupg1bought) + 1;
   } else {
-    game.antieffect = (Math.pow(((game.clicks + (100 - (6 + c1mult))) / 100), 1.95) - 1) / (Math.pow((game.subj >= 4 ? 1.8 : 1.44), game.antiupg1bought)) + 1
+    game.antieffect = (Math.pow(((game.clicks + (100 - (6 + c1mult))) / 100), 1.85) - 1) / (Math.pow((game.subj >= 4 ? 1.8 : 1.44), game.antiupg1bought)) + 1
     if (game.clicks > (64 + c1mult)) {
-      game.antieffect += Math.pow(game.clicks - (64 + c1mult), 1.2) / (320 * Math.pow(1.25, game.antiupg2bought));
+      game.antieffect += Math.pow(game.clicks - (64 + c1mult), 1.2) / (320 * Math.pow(4/3, game.antiupg2bought));
     }
     if (game.clicks > (1000 + c1mult)) {
-      game.antieffect += (Math.pow(game.clicks / 100, 0.75 + (game.clicks / 666.667 * 1.2)) - 5.62341325) / (10 * Math.pow(1.2, game.chalfin.c4));
+      game.antieffect += 18*Math.pow(game.clicks - (1000 + c1mult), 5.1422) / Math.pow(1.2, game.chalfin.c4);
+    }
+    if (game.clicks > 4e6) {
+      game.antieffect += Math.pow((game.clicks-4e6) / 100, 0.75 + (game.clicks / 666.667 * 1.2))/10;
     }
   }
   game.antieffect = game.antieffect ** (1 / game.amrpboost)
@@ -1022,7 +1023,7 @@ function renderloop(diff) {
   } else {
     get("antiupg2").show();
   }
-  if (game.clicks < 12 || (game.ishelp1bought&&game.isupg1bought && game.isupg2bought && game.isupg3bought && game.ishelp5bought&&game.isupg4bought &&game.ishelp7bought&&game.isupg5bought && game.isupg6bought&&game.isdmhelp1bought&&game.isdmupg3bought)||game.dim==1) {
+  if (game.clicks < 12 || (game.ishelp1bought&&game.isupg1bought && game.isupg2bought && game.isupg3bought && game.ishelp5bought&&game.isupg4bought &&game.ishelp7bought&&game.isupg5bought && game.isupg6bought&&game.isdmhelp1bought&&game.isdmupg3bought)||game.dims==1) {
     get("upg").hide();
   } else {
     get("upg").show();
@@ -1044,12 +1045,12 @@ function renderloop(diff) {
   } else {
     get("automainupg1-3").show();
   }
-  if (game.clicks < 97.75 || game.isupg3bought||game.dim<6) {
+  if (game.clicks < 97.75 || game.isupg3bought||game.dims<6) {
     get("automainupg2-4").hide();
   } else {
     get("automainupg2-4").show();
   }
-  if (game.clicks < 123 || game.ishelp5bought) {
+  if (game.clicks < 124 || game.ishelp5bought) {
     get("unlockmaxupg5").hide();
   } else {
     get("unlockmaxupg5").show();
@@ -1120,7 +1121,7 @@ function renderloop(diff) {
       get("dmspace3").show();
     }
   }
-  if (game.clicks < 140 || game.isupg5bought) {
+  if (game.clicks < 152 || game.isupg5bought) {
     get("autodm").hide();
   } else {
     get("autodm").show();
