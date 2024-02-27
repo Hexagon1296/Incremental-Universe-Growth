@@ -16,6 +16,7 @@ function unlockchal() {
     game.ischalunlocked = true;
     buy.currentTime = 0;
     buy.play();
+    game.chalbought.norm = Date.now();
   } else {
     reject.currentTime = 0;
     reject.play();
@@ -26,13 +27,14 @@ function extendchal() {
     game.chalextend = true;
     buy.currentTime = 0;
     buy.play();
+    game.chalbought.ext = Date.now();
   } else {
     reject.currentTime = 0;
     reject.play();
   }
 }
 function inchal(chal) {
-  if (!(isNaN(chal))) {
+  if (!(isNaN(chal)||chal==undefined)) {
     return game.chal.includes(chal);
   } else {
     return game.chal.indexOf(false) !== 0;
@@ -116,7 +118,11 @@ function exitchal(idx) {
 function completechal() {
   if (game.clicks >= chalreq[game.chal[0] - 1]) {
     game.chalfin.total++;
-    Function("game.chalfin.c" + game.chal[0] + "++")()
+    game.chalfin.["c"+game.chal[0]] = game.chalfin.["c"+game.chal[0]];
+    game.totalchal++;
+    game.totalchalcomp[chal[0]]++;
+    game.lastchal = Date.now();
+    game.lastchalcomp[chal[0]] = Date.now();
     $("#chaltotal").html(game.chalfin.total)
     if (game.chal[0] == 2) {
       $("#upg5base").html(2 + game.chalfin.c2 / 2)
@@ -163,17 +169,7 @@ function enteroc(oc) {
       enter = confirm("Are you sure you want to enter this Objective Challenge? You're automation upgrades will be removed, although you will get them back");
     }
     if (enter) {
-      if (oc == 1) {
-        game.chal[0] = prompt("Select your first challenge");
-        game.chal[1] = prompt("Select your second challenge");
-        if (game.chal[1] == game.chal[0]) {
-          while (game.chal[1] == game.chal[0]) {
-            game.chal[1] = prompt("You already picked that challenged. Please pick a new one.");
-          }
-        }
-      } else {
-        game.chal = [false, false]
-      }
+      game.chal = [false, false]
       if (game.ocobjreset) getobjs();
       game.oc = oc;
       for (let i in ocbefore) {
