@@ -234,6 +234,7 @@ function reset() {
   get("objs").html(decimal(game.objs));
   setcolors();
   get("hotkeys").html("ON");
+  subpage('help', 'mainhelp');
   subpage('dm', 'darkmatterupg');
   subpage('obj', 'objectupgs');
   subpage('opt', 'settings');
