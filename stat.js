@@ -1,3 +1,4 @@
+let helpMap = ["ishelp1bought","ishelp5bought","ishelp7bought"]
 function datetime(milli){
   let milliDate = new Date(milli);
   let year,month,date,day,hour,min;
@@ -181,7 +182,8 @@ let versions = [
   "v0.2.4.11",
   "v0.2.5 or v0.2.5.1",
   "v0.2.5.2",
-  "v0.2.5.3 or later"
+  "v0.2.5.3 or v0.2.5.4",
+  "v0.2.6 or later"
 ]
 function stats(){
   get("totalclicks").html(decimal(game.totalclicks));
@@ -270,7 +272,7 @@ function stats(){
     get("antiupg2bought").hide();
   }
   for(let i in game.autobought){
-    if(game["isupg"+i+"bought"]){
+    if(i<7?game["isupg"+i+"bought"]:game[helpMap[i-7]]){
       if(game.autobought[i]==1652572800000){
         get("whenautoupg"+i+"bought").html("sometime");
       }else{
@@ -282,7 +284,7 @@ function stats(){
       get("whenautoupg"+i+"bought").html("yet");
     }
   }
-  if(game.clicks >= 54 || (game.isupg1bought||game.isupg2bought||game.isupg3bought||game.isupg4bought||game.isupg5bought||game.isupg6bought)){
+  if(game.clicks >= 12&&game.dims>1|| (game.isupg1bought||game.isupg2bought||game.isupg3bought||game.isupg4bought||game.isupg5bought||game.isupg6bought)){
     get("autostatbutton").show();
   }else{
     get("autostatbutton").hide();
@@ -297,17 +299,27 @@ function stats(){
   }else{
     get("autoupg2bought").hide();
   }
-  if(game.clicks >= 126 || game.isupg3bought){
+  if(game.clicks >= 97.75&&game.dims>5|| game.isupg3bought){
     get("autoupg3bought").show();
   }else{
     get("autoupg3bought").hide();
+  }
+  if(game.clicks >= 124|| game.ishelp5bought){
+    get("autoupg8bought").show();
+  }else{
+    get("autoupg8bought").hide();
   }
   if(game.clicks >= 130 || game.isupg4bought){
     get("autoupg4bought").show();
   }else{
     get("autoupg4bought").hide();
   }
-  if(game.clicks >= 140 || game.isupg5bought){
+  if(game.clicks >= 140|| game.ishelp7bought){
+    get("autoupg9bought").show();
+  }else{
+    get("autoupg9bought").hide();
+  }
+  if(game.clicks >= 152 || game.isupg5bought){
     get("autoupg5bought").show();
   }else{
     get("autoupg5bought").hide();
@@ -316,6 +328,24 @@ function stats(){
     get("autoupg6bought").show();
   }else{
     get("autoupg6bought").hide();
+  }
+  if (game.dm >= log(7.5)+6 || (game.isdmhelp1bought||game.isdmupg3bought)) {
+    get("dmhelpstat").show();
+  } else {
+    get("dmhelpstat").hide();
+  }
+  for(let i in game.autobought){
+    if(game["isdmhel"+i+"bought"]){
+      if(game.dmhelpbought[i]==1652572800000){
+        get("whendmhelp"+i+"bought").html("sometime");
+      }else{
+        get("whendmhelp"+i+"bought").html(timebetween(game.autobought[i],Date.now())+" ago");
+      }
+      get("hasdmhelp"+i+"bought").hide();
+    }else{
+      get("hasdmhelp"+i+"bought").show();
+      get("whendmhelp"+i+"bought").html("yet");
+    }
   }
   get("totaldm").html(decimal(game.totaldm));
   get("maxdm").html(decimal(game.maxdm));
