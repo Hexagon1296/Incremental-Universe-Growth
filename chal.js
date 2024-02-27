@@ -118,7 +118,7 @@ function exitchal(idx) {
 function completechal() {
   if (game.clicks >= chalreq[game.chal[0] - 1]) {
     game.chalfin.total++;
-    game.chalfin.["c"+game.chal[0]] = game.chalfin.["c"+game.chal[0]];
+    game.chalfin["c"+game.chal[0]] = game.chalfin["c"+game.chal[0]];
     game.totalchal++;
     game.totalchalcomp[chal[0]]++;
     game.lastchal = Date.now();
