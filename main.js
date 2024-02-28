@@ -848,7 +848,7 @@ function gameloop(diff) {
   } else if (inchal(4) || inchal(7)) {
     game.antieffect = (Math.pow(game.clicks - 5, 1.25) - 1) / Math.pow(1.44, game.antiupg1bought) + 1;
   } else {
-    game.antieffect = (Math.pow(((game.clicks + (100 - (6 + c1mult))) / 100), 1.85) - 1) / (Math.pow((game.subj >= 4 ? 1.8 : 1.44), game.antiupg1bought)) + 1
+    game.antieffect = (Math.pow(((game.clicks + (100 - (6 + c1mult))) / 100), 1.85) - 1) / (Math.pow((game.subj >= 4 ? 1.8 : 1.5), game.antiupg1bought)) + 1
     if (game.clicks > (64 + c1mult)) {
       game.antieffect += Math.pow(game.clicks - (64 + c1mult), 1.2) / (320 * Math.pow(4/3, game.antiupg2bought));
     }
