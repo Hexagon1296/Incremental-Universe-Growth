@@ -443,7 +443,7 @@ function buydmbuy2(auto) {
     }
   }
 }
-function maxalldm(){
+function maxalldm(auto){
   let total = 0;
   while(true){
     let min = 0;
