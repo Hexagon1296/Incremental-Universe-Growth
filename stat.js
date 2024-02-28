@@ -9,7 +9,7 @@ function datetime(milli){
   hour = milliDate.getHours();
   min = milliDate.getMinutes();
   let res = "";
-  res += ["Sun","Mon","Tues","Wends","Thurs","Fri","Sat"][day];
+  res += ["Sun","Mon","Tues","Weds","Thurs","Fri","Sat"][day];
   res += ", ";
   res += ["Jan","Feb","March","April","May","June","July","Aug","Sept","Oct","Nov","Dec"][month];
   res += " ";
