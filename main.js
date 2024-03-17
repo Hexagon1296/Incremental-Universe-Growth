@@ -187,7 +187,7 @@ function maxall(auto){
   while(true){
     let min = 0;
     let mincost = Infinity;
-    let will = [!auto||((game.upg1bought<=25)||(game.upg1cost<game.clicks-2))&&!(inchal(5)||inchal(7)),!auto||game.isupg3bought,(!auto||(game.upg3cost<game.clicks-2))&&!(inchal(5)||inchal(7)),!auto||game.isupg3bought,((!auto||game.ishelp7bought)&&game.ishelp5bought)&&!(inchal(2)||inchal(7))];
+    let will = [!auto||(game.upg1bought<=25)||(game.upg1cost<game.clicks-2),(!auto||game.isupg3bought)&&!(inchal(5)||inchal(7)),!auto||(game.upg3cost<game.clicks-2),(!auto||game.isupg3bought)&&!(inchal(5)||inchal(7)),((!auto||game.ishelp7bought)&&game.ishelp5bought)&&!(inchal(2)||inchal(5)||inchal(7))];
     for(let i = 1;i<6;i++){
       let cost = game["upg"+String(i)+"cost"];
       if(cost<mincost&&will[i-1]){
